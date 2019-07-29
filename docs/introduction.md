@@ -1,39 +1,33 @@
-# Benvenuto nella documentazione di Ercole
+# Welcome to Ercole Documentation
 
 ![Ercole](/logo.png "Ercole")
 
-## Funzionalità
+## Main functionalities
 
-
-
-
-![Dashboard](/1.png "Dashboard")
-
-### Licenze sotto controllo, sempre
-Fate attenzione all'installazione del vostro database Oracle e prevenite l'uso di licenze non abilitate.
+### Licensing always under control
+Take care about your Oracle Database installation and prevent the usage of unathorized licenses.
 
 ### Proactive database optimization
-Tutti i risultati Oracle advisory preelaborati e in un unico punto.
+All interesting Oracle advisory output pre-elaborted and in a single point.
 
 ### RMAN Backup policy
-Pianificate la vostra politica di backup RMAN nel modo migliore.
+Plan your RMAN backup policy in the best way.
 
 ### PSU and RU advisor
-Pianificate le vostre PSU and RU patching lifecycle.
+Plan your PSU and RU patching lifecycle.
 
 ### Database server CPU capacity
-Trovate il vostro server DB sovradistribuiti e utilizzate le licenze dove ne avete realmente bisogno.
+Find your over allocated DB server and use the licenses where you really need them.
 
 ### Auto completamento del LMS Oracle audit file
-Hai provato a riempire questo file? Ercole lo fa automaticamente!
+Have you tried to fill this file? Ercole does it automatically
 
+## Next steps
 
-## Prossimi step
+These will be the next steps:
 
-In roadmap i seguenti sviluppi:
-
-* Agent per HPUX
-* Agent per Solaris
-* Agent per AIX
-* Agent per Exadata
-* Integrazione con Oracle VM
+* HPUX Agent
+* Solaris Agent
+* AIX Agent
+* Exadata patching advisor
+* Oracle VM capping integration
