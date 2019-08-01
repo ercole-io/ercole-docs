@@ -28,6 +28,9 @@ These will be the next steps:
 
 * HPUX Agent
 * Solaris Agent
-* AIX Agent
-* Exadata patching advisor
 * Oracle VM capping integration
+* LDOM capping integration
+* Weblogic Licensing
+* Performance & Tuning Tab (latency, buffer gets, etc...)
+* Exadata patching advisor
+* AIX Agent
