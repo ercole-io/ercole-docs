@@ -20,13 +20,13 @@
 
 ## Ercole agent installation
 
-Al fine di consentire la counicazione tra agent e server è necessario aprire le seguenti porte dall'agent verso il server:
+In order to permit the correct comunication between agent and server, you have to open these port on your firewall from agent to server (one way):
 
-* 80  in caso di configurazione in http
-* 443 in caso di configurazione in https
+* 80  if you want http communication protocol
+* 443 if you want https communication protocol
 
 ::: warning ATTENZIONE
-L'apertura delle porte dall'agent verso il server dovrà sempre essere presente in quanto ERCOLE scambia dati periodicamente con il server.
+If you want to use https communication protocol, you have to provide a signed certificate
 :::
 
 ### Sistemi operativi supportati:
