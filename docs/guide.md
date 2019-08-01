@@ -2,7 +2,7 @@
 
 ## Ercole server installation
 
-### Prerequisites
+### Requirements
 
 |     Component     | Prerequisite                                 |
 |:-----------------:|----------------------------------------------|
@@ -29,20 +29,20 @@ In order to permit the correct comunication between agent and server, you have t
 If you want to use https communication protocol, you have to provide a signed certificate
 :::
 
-### Sistemi operativi supportati:
+### Operating System support:
 
-* Red Hat/Oracle Linux/Centos versione 5-6-7
-* A partire da Windows Server 2008 R2  
+* Red Hat/Oracle Linux/CentOS 5.x-6.x-7.x
+* Microsoft Windows 2008R2 - 2012 - 2012R2 - 2016
 
-### Database supportati:
+### Database support:
 
-* Oracle RDBMS 10g 11g 12c 18c 19c
+* Oracle RDBMS 9i 10g 11g 12c 18c 19c
 
-### RHEL
+### RHEL/OEL/CENTOS Installation
 
-#### Prerequisiti
+#### Requirements
 
-* File oratab compilato con ORACLE_SID:ORACLE_HOME:<N/Y>
+* All the Oracle Database must be in the oratab file:
 
 ```
 # This file is used by ORACLE utilities.  It is created by root.sh
@@ -66,16 +66,17 @@ If you want to use https communication protocol, you have to provide a signed ce
 ERCOLE:/data/app/oracle/product/12.2.0/dbhome_1:N
 ```
 
-#### Installazione 
+#### Installation steps 
 
-Eseguire l'install dell'agent in base alla versione di sistema operativo presente:
+Install agent as root user:
 
 ```
 yum install -y https://<ip_ercole_server>/packages/ercole-agent-latest-1.el<5-6-7>.x86_64.rpm
 ```
 
-L'agent viene installato nella directory /opt/ercole-agent e viene creato il servizio ercole-agent.
-Prima di procedere con lo start è necessario modificare il file di connfigurazione:
+The installer will create the service "ercole-agent" and the default path will be /opt/ercole-agent.
+Before starting the agent, you have to modify the config.json file, locate on the installation path. 
+
 
 ```
 vi /opt/ercole-agent/config.json
@@ -83,7 +84,7 @@ vi /opt/ercole-agent/config.json
 {
     "hostname": "default",
     "envtype": "<PRD/TST/SVL>",
-    "location": "<Italy/DC1/DC2/DC3/...>",
+    "location": "<Italy/Germany/DC1/DC2/DC3/...>",
     "serverurl": "<url_ercole_server>/host/update",
     "serverusr": "<User configurated in Ercole Server>",
     "serverpsw": "<Password configurated in Ercole Server>",
