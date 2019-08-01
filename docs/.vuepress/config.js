@@ -7,12 +7,7 @@ module.exports = {
       title: 'Ercole',
       description: 'Proactive Asset Software Management'
     },
-    '/it/': {
-      lang: 'it-IT',
-      title: 'Ercole',
-      description: 'Proactive Asset Software Management'
-    }
-  },
+      },
   themeConfig: {
     locales: {
       '/': {
@@ -28,16 +23,6 @@ module.exports = {
           ['/architecture', 'Architecture']
         ]
       },
-      '/it/': {
-        selectText: 'Lingua',
-        label: 'Italiano',
-        algolia: {},
-        sidebar: [
-          ['/it/introduction', 'Introduzione'],
-          ['/it/guide', 'Getting Started'],
-          ['/it/architecture', 'Architettura']
-        ]
-      }
     },
     logo: '/ercole.svg',
     sidebarDepth: 2,
