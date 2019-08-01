@@ -13,7 +13,83 @@
 | Database          | PostgreSQL >= 9.6                            |
 | Software          | Java 1.8                                     |
 
-### Installation 
+## Installation 
+
+As root disable selinux (if enabled):
+
+vi /etc/selinux/config
+
+```
+# SELINUX= can take one of these three values: 
+# enforcing - SELinux security policy is enforced. 
+# permissive - SELinux prints warnings instead of enforcing. 
+# disabled - No SELinux policy is loaded. 
+SELINUX=disabled 
+# SELINUXTYPE= can take one of three two values: 
+# targeted - Targeted processes are protected, 
+# minimum - Modification of targeted policy. Only selected processes are protected. 
+# mls - Multi Level Security protection. 
+SELINUXTYPE=targeted
+```
+
+As root stop and disable firewalld (if enabled):
+
+```
+systemctl stop firewalld 
+systemctl disable firewalld
+```
+
+Postgresql db creation
+
+```
+psql create database optal; 
+create user optal with password 'optal';    
+alter database optal owner to optal;
+```
+
+Modify pg_hba.conf
+
+vi <Postgresql data directory>/pg_hba.conf  <-- ex. /var/lib/pgsql/9.6/data/pg_hba.conf
+
+```
+# TYPE DATABASE USER ADDRESS METHOD 
+# "local" is for Unix domain socket connections only 
+local all all trust 
+local all all peer 
+# IPv4 local connections: 
+host all all 127.0.0.1/32 trust 
+# IPv6 local connections: 
+host all all ::1/128 trust 
+# Allow replication connections from localhost, by a user with the 
+# replication privilege. 
+#local replication postgres trust 
+#host replication postgres 127.0.0.1/32 trust 
+#host replication postgres ::1/128 trust
+```
+
+OS user creation
+
+```
+useradd -s /bin/bash -g users -d /home/optal -m optal 
+mkdir -p /opt/optal-server/{log,conf} 
+chown optal.users /opt/optal-server/log
+```
+
+Download and copy Ercole Server 
+
+```
+mv optal-server-1.3.1.jar /opt/optal-server 
+mv optal-server.sh /opt/optal-server 
+mv application-prod.properties /opt/optal-server/conf 
+mv optal-server.service /etc/systemd/system
+```
+
+Enable and start Ercole Server
+
+```
+systemctl enable optal-server 
+systemctl start optal-server
+```
 
 ### Configuration
 

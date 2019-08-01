@@ -22,7 +22,7 @@ Find your over allocated DB server and use the licenses where you really need th
 ### Auto completamento del LMS Oracle audit file
 Have you tried to fill this file? Ercole does it automatically
 
-## Next steps
+## Next features
 
 These will be the next steps:
 
