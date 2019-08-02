@@ -36,8 +36,8 @@ Plan your PSU and RU patching lifecycle.
 ### Database server CPU and storage capacity
 Find your over allocated DB server and use the licenses where you really need them.
 
-### Auto completamento del LMS Oracle audit file
-Have you tried to fill this file? Ercole does it automatically
+### Auto filling of LMS Oracle audit file
+Have you tried to fill this complicated file? Ercole does it in one click.
 
 ## Next features
 

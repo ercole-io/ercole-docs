@@ -13,7 +13,7 @@
 | Database          | PostgreSQL >= 9.6                            |
 | Software          | Java 1.8                                     |
 
-## Installation 
+### Installation 
 
 * Postgresql db creation
 
@@ -60,12 +60,27 @@ mv application-prod.properties /opt/ercole-server/conf
 mv ercole-server.service /etc/systemd/system
 ```
 
-* Enable and start Ercole Server
+* Create,enable and start Ercole Server
 
 ```
-systemctl enable ercole-server 
-systemctl start ercole-server
+vi /etc/systemd/system/ercole.service
+
+[Unit]
+Description=Manage Java service
+[Service]
+WorkingDirectory=/opt/ercole-server
+ExecStart=/bin/java -Xms128m -Xmx256m -jar /opt/ercole-server/ercole-server-<version>.jar
+User=ercole
+Type=simple
+Restart=on-failure
+RestartSec=10
+[Install]
+WantedBy=multi-user.target
 ```
+
+* systemctl daemon-reload
+* systemctl start ercole.service
+* systemctl enable ercole.service
 
 ### Configuration
 
@@ -88,7 +103,7 @@ If you want to use https communication protocol, you have to provide a signed ce
 
 ### Database support
 
-* Oracle RDBMS 9i 10g 11g 12c 18c 19c
+* Oracle RDBMS 9i 10g 11g 12c 18c 19c 
 
 ### RHEL/OEL/CENTOS Installation
 
@@ -118,7 +133,7 @@ If you want to use https communication protocol, you have to provide a signed ce
 ERCOLE:/data/app/oracle/product/12.2.0/dbhome_1:N
 ```
 
-#### Installation steps 
+#### Installation
 
 * Install agent as root user:
 
