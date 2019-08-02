@@ -15,39 +15,15 @@
 
 ## Installation 
 
-As root disable selinux (if enabled):
-
-vi /etc/selinux/config
+* Postgresql db creation
 
 ```
-# SELINUX= can take one of these three values: 
-# enforcing - SELinux security policy is enforced. 
-# permissive - SELinux prints warnings instead of enforcing. 
-# disabled - No SELinux policy is loaded. 
-SELINUX=disabled 
-# SELINUXTYPE= can take one of three two values: 
-# targeted - Targeted processes are protected, 
-# minimum - Modification of targeted policy. Only selected processes are protected. 
-# mls - Multi Level Security protection. 
-SELINUXTYPE=targeted
+psql create database ercole; 
+create user ercole with password 'ercole';    
+alter database ercole owner to ercole;
 ```
 
-As root stop and disable firewalld (if enabled):
-
-```
-systemctl stop firewalld 
-systemctl disable firewalld
-```
-
-Postgresql db creation
-
-```
-psql create database optal; 
-create user optal with password 'optal';    
-alter database optal owner to optal;
-```
-
-Modify pg_hba.conf
+* Modify pg_hba.conf
 
 vi <Postgresql data directory>/pg_hba.conf  <-- ex. /var/lib/pgsql/9.6/data/pg_hba.conf
 
@@ -67,28 +43,28 @@ host all all ::1/128 trust
 #host replication postgres ::1/128 trust
 ```
 
-OS user creation
+* OS user creation
 
 ```
-useradd -s /bin/bash -g users -d /home/optal -m optal 
-mkdir -p /opt/optal-server/{log,conf} 
-chown optal.users /opt/optal-server/log
+useradd -s /bin/bash -g users -d /home/ercole -m ercole 
+mkdir -p /opt/ercole-server/{log,conf} 
+chown ercole.users /opt/ercole-server/log
 ```
 
-Download and copy Ercole Server 
+* Download and copy Ercole Server 
 
 ```
-mv optal-server-1.3.1.jar /opt/optal-server 
-mv optal-server.sh /opt/optal-server 
-mv application-prod.properties /opt/optal-server/conf 
-mv optal-server.service /etc/systemd/system
+mv ercole-server-1.3.1.jar /opt/ercole-server 
+mv ercole-server.sh /opt/ercole-server 
+mv application-prod.properties /opt/ercole-server/conf 
+mv ercole-server.service /etc/systemd/system
 ```
 
-Enable and start Ercole Server
+* Enable and start Ercole Server
 
 ```
-systemctl enable optal-server 
-systemctl start optal-server
+systemctl enable ercole-server 
+systemctl start ercole-server
 ```
 
 ### Configuration
@@ -105,12 +81,12 @@ In order to permit the correct comunication between agent and server, you have t
 If you want to use https communication protocol, you have to provide a signed certificate
 :::
 
-### Operating System support:
+### Operating System support
 
 * Red Hat/Oracle Linux/CentOS 5.x-6.x-7.x
 * Microsoft Windows 2008R2 - 2012 - 2012R2 - 2016
 
-### Database support:
+### Database support
 
 * Oracle RDBMS 9i 10g 11g 12c 18c 19c
 
@@ -144,11 +120,13 @@ ERCOLE:/data/app/oracle/product/12.2.0/dbhome_1:N
 
 #### Installation steps 
 
-Install agent as root user:
+* Install agent as root user:
 
 ```
 yum install -y https://<ip_ercole_server>/packages/ercole-agent-latest-1.el<5-6-7>.x86_64.rpm
 ```
+
+* Agent configuration
 
 The installer will create the service "ercole-agent" and the default path will be /opt/ercole-agent.
 Before starting the agent, you have to modify the config.json file, located on the installation path. 
@@ -171,7 +149,7 @@ vi /opt/ercole-agent/config.json
 }
 ```
 
-Now you can start the service:
+* Now you can start the service:
 
 ```
 service ercole-agent start
@@ -190,11 +168,13 @@ journalctl -u ercole-agent -f
 
 #### Installation
 
-Download the agent installer from the page "Agent" on the Ercole Server Main page.
+* Download the agent installer from the page "Agent" on the Ercole Server Main page.
 
-Execute (with administrator privilege) the file ercole-agent-setup-ERCOLE_VERSION.exe 
+* Execute (with administrator privilege) the file ercole-agent-setup-ERCOLE_VERSION.exe 
 
 The installer will create the service "ercole-agent" and the default path will be c:\ercole-agent.
+
+* Agent configuration
 
 Before starting the agent, you have to modify the config.json file, located on the installation path.
 
@@ -213,7 +193,7 @@ Before starting the agent, you have to modify the config.json file, located on t
 }
 ```
 
-Now you can start the service ercole-service.
+* Now you can start the service ercole-service.
 
 ::: danger DEBUG
 If you want to debug the execution of the agent, you can execute it directly into the command line prompt
