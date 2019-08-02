@@ -1,3 +1,20 @@
+<style>
+
+.home .feature h2 {
+font-size: 1.2rem;
+}
+
+.home .feature p {
+line-height: 1.0;;
+}
+
+.home .hero .description{
+line-height: 1.0;;
+}
+
+</style>
+
+
 # Welcome to Ercole Documentation
 
 ![Ercole](/logo.png "Ercole")
@@ -16,7 +33,7 @@ Plan your RMAN backup policy in the best way.
 ### PSU and RU advisor
 Plan your PSU and RU patching lifecycle.
 
-### Database server CPU capacity
+### Database server CPU and storage capacity
 Find your over allocated DB server and use the licenses where you really need them.
 
 ### Auto completamento del LMS Oracle audit file
