@@ -1,4 +1,4 @@
-### Ercole support service level
+## Ercole support service level
 
 | Feature                         | Free               | Bronze             | Silver             | Gold               |
 | ------------------------------- | :------------------: | :------------------: | :------------------: | :------------------: |
@@ -10,9 +10,9 @@
 | Oracle database licensing optimization assessment | :x:                | :x:                | :x:                | :heavy_check_mark: |
 
 
-### Ercole consulting services
+## Ercole consulting services
 
-## Oracle database licensing optimization assessment
+### Oracle database licensing optimization assessment
 
 On the overall database analysis , following areas are evaluated :
 
