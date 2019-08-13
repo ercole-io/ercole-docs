@@ -5,8 +5,8 @@
 | Ercole github community support | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | Ercole dedicated support (bug fixing)  | :x:                | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | Ercole server and agent deploy  | :x:                | :x:                | :heavy_check_mark: | :heavy_check_mark: |
-| Ercole server and agent maintenance (upgrade to the latest release)  | :x:                | :x:                | :heavy_check_mark: | :heavy_check_mark: |
-| Oracle database proactive optimization (patch management, space management and performance & tuning)  | :x:                | :x:                | :x:                | :heavy_check_mark: |
+| Ercole server and agent maintenance | :x:                | :x:                | :heavy_check_mark: | :heavy_check_mark: |
+| Oracle database proactive optimization | :x:                | :x:                | :x:                | :heavy_check_mark: |
 | Oracle database licensing optimization assessment | :x:                | :x:                | :x:                | :heavy_check_mark: |
 
 
