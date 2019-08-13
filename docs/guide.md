@@ -211,5 +211,5 @@ Before starting the agent, you have to modify the config.json file, located on t
 * Now you can start the service ercole-service.
 
 ::: danger DEBUG
-If you want to debug the execution of the agent, you can execute it directly into the command line prompt
+If you want to debug the execution of the agent, you can execute it directly into the command line prompt from the base directory (ex. /opt/ercole-agent)
 :::
