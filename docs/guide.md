@@ -11,7 +11,7 @@
 | Filesystem        | 50GB (minimum)                               |
 | CPU               | 2 VirtualCPU                                 |
 | Database          | PostgreSQL >= 9.6                            |
-| Software          | Java 1.8                                     |
+| Software          | java-11-openjdk                                    |
 
 ### Installation 
 
@@ -28,19 +28,18 @@ alter database ercole owner to ercole;
 vi <Postgresql data directory>/pg_hba.conf  <-- ex. /var/lib/pgsql/9.6/data/pg_hba.conf
 
 ```
-# TYPE DATABASE USER ADDRESS METHOD 
-# "local" is for Unix domain socket connections only 
-local all all trust 
-local all all peer 
-# IPv4 local connections: 
-host all all 127.0.0.1/32 trust 
-# IPv6 local connections: 
-host all all ::1/128 trust 
-# Allow replication connections from localhost, by a user with the 
-# replication privilege. 
-#local replication postgres trust 
-#host replication postgres 127.0.0.1/32 trust 
-#host replication postgres ::1/128 trust
+# TYPE  DATABASE        USER            ADDRESS                 METHOD
+# "local" is for Unix domain socket connections only
+local   all             all                                     md5
+# IPv4 local connections:
+host    all             all             127.0.0.1/32            md5
+# IPv6 local connections:
+host    all             all             ::1/128                 ident
+# Allow replication connections from localhost, by a user with the
+# replication privilege.
+local   replication     all                                     peer
+host    replication     all             127.0.0.1/32            ident
+host    replication     all             ::1/128                 ident
 ```
 
 * OS user creation
@@ -51,32 +50,27 @@ mkdir -p /opt/ercole-server/{log,conf}
 chown ercole.users /opt/ercole-server/log
 ```
 
-* Download and copy Ercole Server 
+* Install rpm Ercole Server 
 
 ```
-mv ercole-server-1.3.1.jar /opt/ercole-server 
-mv ercole-server.sh /opt/ercole-server 
-mv application-prod.properties /opt/ercole-server/conf 
-mv ercole-server.service /etc/systemd/system
+yum install "rpm_ercole_server" (ex. ercole-server-1.5.0n-1.el7.x86_64.rpm)
 ```
 
-* Create,enable and start Ercole Server
+* Configure and start Ercole Server
 
-```
-vi /etc/systemd/system/ercole.service
+In order to configure ercole server you have to customize the file /opt/ercole-server/application.properties.
 
-[Unit]
-Description=Manage Java service
-[Service]
-WorkingDirectory=/opt/ercole-server
-ExecStart=/bin/java -Xms128m -Xmx256m -jar /opt/ercole-server/ercole-server-<version>.jar
-User=ercole
-Type=simple
-Restart=on-failure
-RestartSec=10
-[Install]
-WantedBy=multi-user.target
-```
+Main parameter are:
+
+| Parameter | Description | Default |
+|----------------------------|------------------------------|-----------------------------------------|
+| spring.datasource.url | Postgres database connection | jdbc:postgresql://localhost:5432/ercole |
+| spring.datasource.username | DB user | ercole |
+| spring.datasource.password | DB user password | ercole |
+| user.normal.name | Ercole server user | user |
+| user.normal.password | Ercole server user password | password |
+| agent.user | Ercole agent user | user |
+| agent.password | Ercole agent user password | password |
 
 * systemctl daemon-reload
 * systemctl start ercole.service
