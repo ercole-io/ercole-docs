@@ -141,33 +141,32 @@ The installer will create the service "ercole-agent" and the default path will b
 Before starting the agent, you have to modify the config.json file, located on the installation path. 
 
 
-```
-vi /opt/ercole-agent/config.json
-
-{
-    "hostname": "default",                                       <-- if "default" the agent takes the server hostname, otherwise it takes the name written
-    "envtype": "<PRD/TST/SVL>",                                  <-- It accepts what you want (es. Production, PRD or PROD)
-    "location": "<Italy/Germany/DC1/DC2/DC3/...>",               <-- It accepts what you want (es. Italy, IT or DC_IT)
-    "serverurl": "<url_ercole_server>/host/update",              <-- Ercole server address
-    "serverusr": "<User configurated in Ercole Server>",         <-- Ercole server  username
-    "serverpsw": "<Password configurated in Ercole Server>",     <-- Ercole server Password
-    "frequency": 24,                                             <-- Schedulation window in hour (1 in a day by default)
-    "forcestats": true,                                          <-- If true it forces DBA_FEATURE_USAGE_STATISTICS refresh (recommended)
-    "EnableServerValidation": false,                             <-- If false it accepts certificate self signed or not acknowledged
-    "ForcePwshVersion": "0"                                      <-- Not used on linux agent
-}
-```
+| Parameter | Description | Default |
+|------------------------|---------------------------------------------------------------------------------------|-----------|
+| Hostname | if "default" the agent takes the server hostname, otherwise it takes the name written | "default" |
+| envtype | It accepts what you want (es. Production, PRD or PROD) | ercole |
+| location | It accepts what you want (es. Italy, IT or DC_IT) | ercole |
+| serverurl | Ercole server address | user |
+| serverusr | Ercole server user | password |
+| serverpsw | Ercole server password | user |
+| frequency | Schedulation window in hour (1 in a day by default) | password |
+| forcestats | If true it forces DBA_FEATURE_USAGE_STATISTICS refresh (recommended) |  |
+| EnableServerValidation | If false it accepts certificate self signed or not acknowledged |  |
+| ForcePwshVersion | Insert the powershell version if the version is different (only for windows) |  |
 
 * Now you can start the service:
 
 ```
 service ercole-agent start
 ```
-You can check the execution through the journalctl: 
+
+You can check the execution through the journalctl (Linux 7): 
 
 ```
 journalctl -u ercole-agent -f
 ```
+
+You can find the log on /var/log/ercole-agent.log (Linux 5 & 6): 
 
 ### Windows installation
 
@@ -187,20 +186,18 @@ The installer will create the service "ercole-agent" and the default path will b
 
 Before starting the agent, you have to modify the config.json file, located on the installation path.
 
-```
-{
-    "hostname": "default",                                       <-- if "default" the agent takes the server hostname, otherwise it takes the name written
-    "envtype": "<PRD/TST/SVL>",                                  <-- It accepts what you want (es. Production, PRD or PROD)
-    "location": "<Italy/Germany/DC1/DC2/DC3/...>",               <-- It accepts what you want (es. Italy, IT or DC_IT)
-    "serverurl": "<url_ercole_server>/host/update",              <-- Ercole server address
-    "serverusr": "<User configurated in Ercole Server>",         <-- Ercole server  username
-    "serverpsw": "<Password configurated in Ercole Server>",     <-- Ercole server Password
-    "frequency": 24,                                             <-- Schedulation window in hour (1 in a day by default)
-    "forcestats": true,                                          <-- If true it forces DBA_FEATURE_USAGE_STATISTICS refresh (recommended)
-    "EnableServerValidation": false,                             <-- If false it accepts certificate self signed or not acknowledged
-    "ForcePwshVersion": "0"                                      <-- Insert the powershell version if the version is different
-}
-```
+| Parameter | Description | Default |
+|------------------------|---------------------------------------------------------------------------------------|-----------|
+| Hostname | if "default" the agent takes the server hostname, otherwise it takes the name written | "default" |
+| envtype | It accepts what you want (es. Production, PRD or PROD) | ercole |
+| location | It accepts what you want (es. Italy, IT or DC_IT) | ercole |
+| serverurl | Ercole server address | user |
+| serverusr | Ercole server user | password |
+| serverpsw | Ercole server password | user |
+| frequency | Schedulation window in hour (1 in a day by default) | password |
+| forcestats | If true it forces DBA_FEATURE_USAGE_STATISTICS refresh (recommended) |  |
+| EnableServerValidation | If false it accepts certificate self signed or not acknowledged |  |
+| ForcePwshVersion | Insert the powershell version if the version is different (only for windows) |  |
 
 * Now you can start the service ercole-service.
 
