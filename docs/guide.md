@@ -11,7 +11,7 @@
 | Filesystem        | 50GB (minimum)                               |
 | CPU               | 2 VirtualCPU                                 |
 | Database          | PostgreSQL >= 9.6                            |
-| Software          | Java 1.8                                     |
+| Software          | java-11-openjdk                                    |
 
 ### Installation 
 
@@ -28,19 +28,18 @@ alter database ercole owner to ercole;
 vi <Postgresql data directory>/pg_hba.conf  <-- ex. /var/lib/pgsql/9.6/data/pg_hba.conf
 
 ```
-# TYPE DATABASE USER ADDRESS METHOD 
-# "local" is for Unix domain socket connections only 
-local all all trust 
-local all all peer 
-# IPv4 local connections: 
-host all all 127.0.0.1/32 trust 
-# IPv6 local connections: 
-host all all ::1/128 trust 
-# Allow replication connections from localhost, by a user with the 
-# replication privilege. 
-#local replication postgres trust 
-#host replication postgres 127.0.0.1/32 trust 
-#host replication postgres ::1/128 trust
+# TYPE  DATABASE        USER            ADDRESS                 METHOD
+# "local" is for Unix domain socket connections only
+local   all             all                                     md5
+# IPv4 local connections:
+host    all             all             127.0.0.1/32            md5
+# IPv6 local connections:
+host    all             all             ::1/128                 ident
+# Allow replication connections from localhost, by a user with the
+# replication privilege.
+local   replication     all                                     peer
+host    replication     all             127.0.0.1/32            ident
+host    replication     all             ::1/128                 ident
 ```
 
 * OS user creation
@@ -51,32 +50,27 @@ mkdir -p /opt/ercole-server/{log,conf}
 chown ercole.users /opt/ercole-server/log
 ```
 
-* Download and copy Ercole Server 
+* Install rpm Ercole Server 
 
 ```
-mv ercole-server-1.3.1.jar /opt/ercole-server 
-mv ercole-server.sh /opt/ercole-server 
-mv application-prod.properties /opt/ercole-server/conf 
-mv ercole-server.service /etc/systemd/system
+yum install "rpm_ercole_server" (ex. ercole-server-1.5.0n-1.el7.x86_64.rpm)
 ```
 
-* Create,enable and start Ercole Server
+* Configure and start Ercole Server
 
-```
-vi /etc/systemd/system/ercole.service
+In order to configure ercole server you have to customize the file /opt/ercole-server/application.properties.
 
-[Unit]
-Description=Manage Java service
-[Service]
-WorkingDirectory=/opt/ercole-server
-ExecStart=/bin/java -Xms128m -Xmx256m -jar /opt/ercole-server/ercole-server-<version>.jar
-User=ercole
-Type=simple
-Restart=on-failure
-RestartSec=10
-[Install]
-WantedBy=multi-user.target
-```
+Main parameter are:
+
+| Parameter | Description | Default |
+|----------------------------|------------------------------|-----------------------------------------|
+| spring.datasource.url | Postgres database connection | jdbc:postgresql://localhost:5432/ercole |
+| spring.datasource.username | DB user | ercole |
+| spring.datasource.password | DB user password | ercole |
+| user.normal.name | Ercole server user | user |
+| user.normal.password | Ercole server user password | password |
+| agent.user | Ercole agent user | user |
+| agent.password | Ercole agent user password | password |
 
 * systemctl daemon-reload
 * systemctl start ercole.service
@@ -147,33 +141,32 @@ The installer will create the service "ercole-agent" and the default path will b
 Before starting the agent, you have to modify the config.json file, located on the installation path. 
 
 
-```
-vi /opt/ercole-agent/config.json
-
-{
-    "hostname": "default",                                       <-- if "default" the agent takes the server hostname, otherwise it takes the name written
-    "envtype": "<PRD/TST/SVL>",                                  <-- It accepts what you want (es. Production, PRD or PROD)
-    "location": "<Italy/Germany/DC1/DC2/DC3/...>",               <-- It accepts what you want (es. Italy, IT or DC_IT)
-    "serverurl": "<url_ercole_server>/host/update",              <-- Ercole server address
-    "serverusr": "<User configurated in Ercole Server>",         <-- Ercole server  username
-    "serverpsw": "<Password configurated in Ercole Server>",     <-- Ercole server Password
-    "frequency": 24,                                             <-- Schedulation window in hour (1 in a day by default)
-    "forcestats": true,                                          <-- If true it forces DBA_FEATURE_USAGE_STATISTICS refresh (recommended)
-    "EnableServerValidation": false,                             <-- If false it accepts certificate self signed or not acknowledged
-    "ForcePwshVersion": "0"                                      <-- Not used on linux agent
-}
-```
+| Parameter | Description | Default |
+|------------------------|---------------------------------------------------------------------------------------|-----------|
+| Hostname | if "default" the agent takes the server hostname, otherwise it takes the name written | "default" |
+| envtype | It accepts what you want (es. Production, PRD or PROD) | ercole |
+| location | It accepts what you want (es. Italy, IT or DC_IT) | ercole |
+| serverurl | Ercole server address | user |
+| serverusr | Ercole server user | password |
+| serverpsw | Ercole server password | user |
+| frequency | Schedulation window in hour (1 in a day by default) | password |
+| forcestats | If true it forces DBA_FEATURE_USAGE_STATISTICS refresh (recommended) |  |
+| EnableServerValidation | If false it accepts certificate self signed or not acknowledged |  |
+| ForcePwshVersion | Insert the powershell version if the version is different (only for windows) |  |
 
 * Now you can start the service:
 
 ```
 service ercole-agent start
 ```
-You can check the execution through the journalctl: 
+
+You can check the execution through the journalctl (Linux 7): 
 
 ```
 journalctl -u ercole-agent -f
 ```
+
+You can find the log on /var/log/ercole-agent.log (Linux 5 & 6): 
 
 ### Windows installation
 
@@ -193,23 +186,21 @@ The installer will create the service "ercole-agent" and the default path will b
 
 Before starting the agent, you have to modify the config.json file, located on the installation path.
 
-```
-{
-    "hostname": "default",                                       <-- if "default" the agent takes the server hostname, otherwise it takes the name written
-    "envtype": "<PRD/TST/SVL>",                                  <-- It accepts what you want (es. Production, PRD or PROD)
-    "location": "<Italy/Germany/DC1/DC2/DC3/...>",               <-- It accepts what you want (es. Italy, IT or DC_IT)
-    "serverurl": "<url_ercole_server>/host/update",              <-- Ercole server address
-    "serverusr": "<User configurated in Ercole Server>",         <-- Ercole server  username
-    "serverpsw": "<Password configurated in Ercole Server>",     <-- Ercole server Password
-    "frequency": 24,                                             <-- Schedulation window in hour (1 in a day by default)
-    "forcestats": true,                                          <-- If true it forces DBA_FEATURE_USAGE_STATISTICS refresh (recommended)
-    "EnableServerValidation": false,                             <-- If false it accepts certificate self signed or not acknowledged
-    "ForcePwshVersion": "0"                                      <-- Insert the powershell version if the version is different
-}
-```
+| Parameter | Description | Default |
+|------------------------|---------------------------------------------------------------------------------------|-----------|
+| Hostname | if "default" the agent takes the server hostname, otherwise it takes the name written | "default" |
+| envtype | It accepts what you want (es. Production, PRD or PROD) | ercole |
+| location | It accepts what you want (es. Italy, IT or DC_IT) | ercole |
+| serverurl | Ercole server address | user |
+| serverusr | Ercole server user | password |
+| serverpsw | Ercole server password | user |
+| frequency | Schedulation window in hour (1 in a day by default) | password |
+| forcestats | If true it forces DBA_FEATURE_USAGE_STATISTICS refresh (recommended) |  |
+| EnableServerValidation | If false it accepts certificate self signed or not acknowledged |  |
+| ForcePwshVersion | Insert the powershell version if the version is different (only for windows) |  |
 
 * Now you can start the service ercole-service.
 
 ::: danger DEBUG
-If you want to debug the execution of the agent, you can execute it directly into the command line prompt
+If you want to debug the execution of the agent, you can execute it directly into the command line prompt from the base directory (ex. /opt/ercole-agent)
 :::
