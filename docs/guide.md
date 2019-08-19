@@ -143,7 +143,7 @@ Before starting the agent, you have to modify the config.json file, located on t
 
 | Parameter | Description | Default |
 |------------------------|---------------------------------------------------------------------------------------|-----------|
-| Hostname | if "default" the agent takes the server hostname, otherwise it takes the name written | "default" |
+| Hostname | if "default" the agent takes the server hostname, otherwise it takes the name written | default |
 | envtype | It accepts what you want (es. Production, PRD or PROD) | ercole |
 | location | It accepts what you want (es. Italy, IT or DC_IT) | ercole |
 | serverurl | Ercole server address | user |
