@@ -71,6 +71,8 @@ Main parameter are:
 | user.normal.password | Ercole server user password | password |
 | agent.user | Ercole agent user | user |
 | agent.password | Ercole agent user password | password |
+| agent.password | Ercole agent user password | password |
+| server.port | Ercole server port | 8080 |
 
 * systemctl daemon-reload
 * systemctl start ercole.service
@@ -83,7 +85,7 @@ Main parameter are:
 
 In order to permit the correct comunication between agent and server, you have to open these port on your firewall from agent to server (one way):
 
-* 80  if you want http communication protocol
+* 9080  if you want http communication protocol
 * 443 if you want https communication protocol
 
 ::: warning ATTENZIONE
