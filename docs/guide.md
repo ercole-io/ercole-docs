@@ -72,7 +72,7 @@ Main parameter are:
 | agent.user | Ercole agent user | user |
 | agent.password | Ercole agent user password | password |
 | agent.password | Ercole agent user password | password |
-| server.port | Ercole server port | 8080 |
+| server.port | Ercole server port | 9080 |
 
 * systemctl daemon-reload
 * systemctl start ercole.service
