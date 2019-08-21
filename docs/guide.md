@@ -11,7 +11,7 @@
 | Filesystem        | 50GB (minimum)                               |
 | CPU               | 2 VirtualCPU                                 |
 | Database          | PostgreSQL >= 9.6                            |
-| Software          | java-11-openjdk                                    |
+| Software          | java-11-openjdk                              |
 
 ### Installation 
 
@@ -25,7 +25,9 @@ alter database ercole owner to ercole;
 
 * Modify pg_hba.conf
 
+```
 vi <Postgresql data directory>/pg_hba.conf  <-- ex. /var/lib/pgsql/9.6/data/pg_hba.conf
+```
 
 ```
 # TYPE  DATABASE        USER            ADDRESS                 METHOD
