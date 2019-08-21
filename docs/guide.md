@@ -71,6 +71,8 @@ Main parameter are:
 | user.normal.password | Ercole server user password | password |
 | agent.user | Ercole agent user | user |
 | agent.password | Ercole agent user password | password |
+| agent.password | Ercole agent user password | password |
+| server.port | Ercole server port | 9080 |
 
 * systemctl daemon-reload
 * systemctl start ercole.service
@@ -83,7 +85,7 @@ Main parameter are:
 
 In order to permit the correct comunication between agent and server, you have to open these port on your firewall from agent to server (one way):
 
-* 80  if you want http communication protocol
+* 9080  if you want http communication protocol
 * 443 if you want https communication protocol
 
 ::: warning ATTENZIONE
@@ -143,7 +145,7 @@ Before starting the agent, you have to modify the config.json file, located on t
 
 | Parameter | Description | Default |
 |------------------------|---------------------------------------------------------------------------------------|-----------|
-| Hostname | if "default" the agent takes the server hostname, otherwise it takes the name written | "default" |
+| Hostname | if "default" the agent takes the server hostname, otherwise it takes the name written | default |
 | envtype | It accepts what you want (es. Production, PRD or PROD) | ercole |
 | location | It accepts what you want (es. Italy, IT or DC_IT) | ercole |
 | serverurl | Ercole server address | user |

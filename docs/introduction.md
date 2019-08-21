@@ -21,22 +21,22 @@ line-height: 1.0;;
 
 ## Main functionalities
 
-### Licensing always under control
+**Licensing always under control**
 Take care about your Oracle Database installation and prevent the usage of unathorized licenses.
 
-### Proactive database optimization
+**Proactive database optimization**
 All interesting Oracle advisory output pre-elaborted and in a single point.
 
-### RMAN Backup policy
+**RMAN Backup policy**
 Plan your RMAN backup policy in the best way.
 
-### PSU and RU advisor
+**PSU and RU advisor**
 Plan your PSU and RU patching lifecycle.
 
-### Database server CPU and storage capacity
+**Database server CPU and storage capacity**
 Find your over allocated DB server and use the licenses where you really need them.
 
-### Auto filling of LMS Oracle audit file
+**Auto filling of LMS Oracle audit file**
 Have you ever tried to fill this complicated file? Ercole does it in one click.
 
 ## Next features
