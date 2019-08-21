@@ -3,6 +3,7 @@ home: true
 heroImage: /ercole.svg
 actionText: Get Started →
 actionLink: /introduction/
+
 features:
 - title: Licensing under control, always
   details: Take care about your Oracle Database installation and prevent the use of unathorized licenses.
