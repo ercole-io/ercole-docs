@@ -20,5 +20,5 @@ features:
 
 
 
-footer: Apache 2.0 License | Copyright © 2018-present Sorint Lab SpA
+footer: GNU GPL v3 License | Copyright © 2019-present Sorint Lab SpA
 ---
