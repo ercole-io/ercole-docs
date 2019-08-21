@@ -5,7 +5,8 @@ module.exports = {
     '/': {
       lang: 'en-US', // this will be set as the lang attribute on <html>
       title: 'Ercole',
-      description: 'Proactive Asset Software Management'
+      description: 'Proactive Asset Software Management',
+      text: '##You can find the service around Ercole on Sorint\'s Ercole services page).', link: 'https://www.sorint.it/ercole' 
     },
       },
   themeConfig: {
