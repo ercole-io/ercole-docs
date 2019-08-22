@@ -12,15 +12,17 @@
 | CPU               | 2 VirtualCPU                                 |
 | Database          | PostgreSQL >= 9.6                            |
 | Software          | java-11-openjdk                              |
+| Network           | port 9080 (HTTP) or 443 (HTTPS) open         | 
 
 ### Installation 
 
 * Postgresql db creation
 
 ```
-psql create database ercole; 
-create user ercole with password 'ercole';    
-alter database ercole owner to ercole;
+$ psql
+postgres-# create database ercole; 
+postgres-# create user ercole with password 'ercole';    
+postgres-# alter database ercole owner to ercole;
 ```
 
 * Modify pg_hba.conf
@@ -60,7 +62,7 @@ yum install "rpm_ercole_server" (ex. ercole-server-1.5.0n-1.el7.x86_64.rpm)
 
 * Configure and start Ercole Server
 
-In order to configure ercole server you have to customize the file /opt/ercole-server/application.properties.
+In order to configure ercole server you have to customize the file /opt/ercole-server/application.properties with the paramters different from the default.
 
 Main parameter are:
 
