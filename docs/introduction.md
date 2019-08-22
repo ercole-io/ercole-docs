@@ -25,7 +25,7 @@ line-height: 1.0;;
 Take care about your Oracle Database installation and prevent the usage of unathorized licenses.
 
 **Proactive database optimization**
-All interesting Oracle advisory output pre-elaborted and in a single point.
+All interesting Oracle advisory output pre-elaborated and in a single point.
 
 **RMAN Backup policy**
 Plan your RMAN backup policy in the best way.
