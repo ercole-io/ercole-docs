@@ -32,7 +32,7 @@ module.exports = {
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Professional support', link: 'https://www.sorint.it/ercole' },
-      { text: 'Gitter', link: 'https://www.example.org' },
+      { text: 'Gitter', link: 'https://gitter.im/ercole-io/community' },
     ]
   }
 }
