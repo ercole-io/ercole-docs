@@ -60,7 +60,7 @@ yum install "rpm_ercole_server" (ex. ercole-server-1.5.0n-1.el7.x86_64.rpm)
 
 * Configure and start Ercole Server
 
-In order to configure ercole server you have to customize the file /opt/ercole-server/application.properties with the paramters different from the default.
+In order to configure ercole server you have to customize the file /opt/ercole-server/application.properties with the parameters different from the default.
 
 Main parameter are:
 
