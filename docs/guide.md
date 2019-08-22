@@ -27,7 +27,9 @@ postgres-# alter database ercole owner to ercole;
 
 * Modify pg_hba.conf
 
+```
 vi <Postgresql data directory>/pg_hba.conf  <-- ex. /var/lib/pgsql/9.6/data/pg_hba.conf
+```
 
 ```
 # TYPE  DATABASE        USER            ADDRESS                 METHOD

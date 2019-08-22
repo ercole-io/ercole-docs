@@ -27,6 +27,12 @@ module.exports = {
     },
     logo: '/ercole.svg',
     sidebarDepth: 2,
-    displayAllHeaders: true
+    displayAllHeaders: true,
+    repo: 'ercole-io/ercole-server',
+    nav: [
+      { text: 'Home', link: '/' },
+      { text: 'Professional support', link: 'https://www.sorint.it/ercole' },
+      { text: 'Gitter', link: 'https://gitter.im/ercole-io/community' },
+    ]
   }
 }
