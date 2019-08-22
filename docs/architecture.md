@@ -37,10 +37,10 @@ to json/jsonb happens at query level in the server methods.
 
 ## Deployment
 
-Currently Ercole-Server embeds both Ercole Packages and Ercole Web, so it can be deployed as a
+Currently Ercole-Server embeds Ercole agents and Ercole Web, so it can be deployed as a
 standalone jar.
 
-It is reccommended to set up a proxy server (nginx, apache) in front of Ercole Server to provide
+It is recommended to set up a proxy server (nginx, apache) in front of Ercole Server to provide
 SSL communication between the agents and the server.
 
 ## Future versions
