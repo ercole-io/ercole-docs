@@ -82,9 +82,6 @@ Main parameter are:
 * systemctl start ercole.service
 * systemctl enable ercole.service
 
-### Configuration
-
-
 ## Ercole agent installation
 
 In order to permit the correct comunication between agent and server, you have to open these port on your firewall from agent to server (one way):
@@ -98,7 +95,7 @@ If you want to use https communication protocol, you have to provide a signed ce
 
 ### Operating System support
 
-* Red Hat/Oracle Linux/CentOS 5.x-6.x-7.x
+* Red Hat/Oracle Linux/CentOS 5.x-6.x-7.x (only 7.x for the virtualization agent)
 * Microsoft Windows 2008R2 - 2012 - 2012R2 - 2016
 
 ### Database support
@@ -172,7 +169,19 @@ You can check the execution through the journalctl (Linux 7):
 journalctl -u ercole-agent -f
 ```
 
-You can find the log on /var/log/ercole-agent.log (Linux 5 & 6): 
+You can find the log on /var/log/ercole-agent.log (Linux 5 & 6).
+
+#### Virtualization agent configuration
+
+You can install virtualization agent in order to take care about the licensing gap due to virtualization layer.
+Currently ercole virtualization agent supports VmWare.
+Once you have installed the agent (the installation process is the same as the standard ercole-agent), you have to insert the VmWare VCenter credential in the file creds.csv:
+
+```
+server,user,pass
+
+10.20.30.40,reader@vsphere.local,reader
+```
 
 ### Windows installation
 
