@@ -34,5 +34,13 @@ module.exports = {
       { text: 'Professional support', link: 'https://www.sorint.it/ercole' },
       { text: 'Gitter', link: 'https://gitter.im/ercole-io/community' },
     ]
-  }
+  },
+  plugins: [
+    [
+      '@vuepress/google-analytics',
+      {
+        'ga': 'UA-146622093-1'
+      }
+    ]
+  ]
 }
