@@ -155,6 +155,7 @@ Before starting the agent, you have to modify the config.json file, located on t
 | forcestats | If true it forces DBA_FEATURE_USAGE_STATISTICS refresh (recommended) |  |
 | EnableServerValidation | If false it accepts certificate self signed or not acknowledged |  |
 | ForcePwshVersion | Insert the powershell version if the version is different (only for windows) |  |
+| oratab | Override the default oratab filename |  |
 
 * Now you can start the service:
 
