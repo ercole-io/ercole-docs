@@ -57,7 +57,7 @@ chown ercole.users /opt/ercole-server/log
 * Install rpm Ercole Server 
 
 ```
-yum install "rpm_ercole_server" (ex. ercole-server-1.5.0n-1.el7.x86_64.rpm)
+yum install "rpm_ercole_server" (ex. ercole-server-1.5.0n-1.el7.x86_64.rpm - https://github.com/ercole-io/ercole-server/releases)
 ```
 
 * Configure and start Ercole Server
@@ -78,8 +78,7 @@ Main parameter are:
 | server.port | Ercole server port | 9080 |
 
 * systemctl daemon-reload
-* systemctl start ercole.service
-* systemctl enable ercole.service
+* systemctl start ercole-server
 
 ## Ercole agent installation
 
