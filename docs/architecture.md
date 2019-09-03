@@ -51,7 +51,12 @@ the architecture and impact the data format:
 ![ArchitectureV2](/architecture-v2.png "ArchitectureV2")
 
 - Move to mongodb or other json-based storage
-- Create a separate service for alert generation (and notifications). Expose data for 3rd party usage (i.e. prometheus)
-- Separate the UI REST API from the Agent data endpoint
+- Create separate services:
+  - Alert: Generate alerts, send notifications. Expose data for 3rd party usage (i.e. prometheus)
+  - API: provides REST APIs for the User Interface
+  - Data: receives data from the agent
+  - Repo: provides a yum repository (proxy?) for the agent binaries
 - Implement a self-update mechanism for the agents, move agent packages to a dedicated repository/service
 - Use Go as preferred language for services
+
+Note that this list is subject to change, new ideas, etc.
