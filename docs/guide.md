@@ -6,7 +6,7 @@
 
 |     Component     | Prerequisite                                 |
 |:-----------------:|----------------------------------------------|
-| Operating system  | Centos, RedHat, OracleLinux 7                |
+| Operating system  | CentOS, RedHat, OracleLinux 7                |
 | RAM               | 4GB                                          |
 | Filesystem        | 50GB (minimum)                               |
 | CPU               | 2 VirtualCPU                                 |
@@ -100,7 +100,7 @@ If you want to use https communication protocol, you have to provide a signed ce
 
 * Oracle RDBMS 9i 10g 11g 12c 18c 19c 
 
-### RHEL/OEL/CENTOS Installation
+### RHEL/OEL/CentOS Installation
 
 #### Requirements
 
