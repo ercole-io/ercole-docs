@@ -9,12 +9,19 @@ home: true
         Proactive Software Asset Management
     </p>
     <p class="action">
-        <a href="/introduction/" class="nav-link action-button">Get Started →</a>
-        <a href="https://demo.ercole.io" class="nav-link action-button">Try it →</a>
+        <a href="/introduction/" class="nav-link action-button">
+            <div>Get Started →</div>
+        </a>
+        <a href="https://demo.ercole.io" class="nav-link action-button">
+            <div>
+                Try it →
+                <p style="font-size:0.8rem">user:"user" password:"password"</p>
+            </div>
+        </a>
     </p>
-    <p style="font-size:0.8rem">
+    <!-- <p style="font-size:0.8rem">
         The credentials of the demo are "user" as username, "password" as password
-    </p>
+    </p> -->
 </header>
 <div class="features">
     <div class="feature">
