@@ -173,13 +173,26 @@ You can find the log on /var/log/ercole-agent.log (Linux 5 & 6).
 #### Virtualization agent configuration
 
 You can install virtualization agent in order to take care about the licensing gap due to virtualization layer.
-Currently ercole virtualization agent supports VmWare.
-Once you have installed the agent (the installation process is the same as the standard ercole-agent), you have to insert the VmWare VCenter credential in the file creds.csv:
-
+Currently ercole virtualization agent supports VMware and OVM.
+Once you have installed the agent (the installation process is the same as the standard ercole-agent), you have to insert the VMware VCenter/OVM Manager credentials/settings in the config.json file.
+For example:
 ```
-server,user,pass
-
-10.20.30.40,reader@vsphere.local,reader
+    "hypervisors": [
+        { 
+            "type": "vmware", 
+            "endpoint": "10.20.30.40", 
+            "username": "reader@vsphere.local", 
+            "password": "reader"
+        },
+        {
+            "type": "ovm",
+            "endpoint": "10.20.30.40",
+            "username": "reader",
+            "password": "R34d3r",
+            "ovmuserkey": "92838932423",
+            "ovmcontrol": "/path/to/ovmcontrol"
+        }
+    ]
 ```
 
 ### Windows installation
