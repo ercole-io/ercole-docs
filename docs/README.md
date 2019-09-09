@@ -4,10 +4,6 @@ home: true
 
 <header class="hero">
     <img src="/ercole.svg" alt="hero">
-    <h1 id="main-title">Ercole</h1>
-    <p class="description">
-        Proactive Software Asset Management
-    </p>
     <p class="action">
         <a href="/introduction/" class="nav-link action-button">
             <div>Get Started →</div>
