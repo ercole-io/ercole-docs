@@ -52,15 +52,6 @@ host    replication     all             ::1/128                 ident
 systemctl restart "postgresql service"
 ```
 
-
-* OS user creation
-
-```
-useradd -s /bin/bash -g users -d /home/ercole -m ercole 
-mkdir -p /opt/ercole-server/{log,conf} 
-chown ercole.users /opt/ercole-server/log
-```
-
 * Install rpm Ercole Server 
 
 ```
