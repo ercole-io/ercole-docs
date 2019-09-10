@@ -46,6 +46,13 @@ host    replication     all             127.0.0.1/32            ident
 host    replication     all             ::1/128                 ident
 ```
 
+* Restart postgresql
+
+```
+systemctl restart "postgresql service"
+```
+
+
 * OS user creation
 
 ```
