@@ -213,6 +213,7 @@ If you want to debug the execution of the agent, you can execute it directly int
 * VSphere power CLI module
 * Open port 443 from ercole-agent-virtualization to ovmmanager 
 * Read only user access to the VSphere
+* Set this powershell option: "Set-PowerCLIConfiguration -Scope User -ParticipateInCEIP $false -InvalidCertificateAction ignore"
 
 #### Requirements for Oracle VM
 
