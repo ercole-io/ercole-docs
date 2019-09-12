@@ -168,31 +168,6 @@ journalctl -u ercole-agent -f
 
 You can find the log on /var/log/ercole-agent.log (Linux 5 & 6).
 
-#### Virtualization agent configuration
-
-You can install virtualization agent in order to take care about the licensing gap due to virtualization layer.
-Currently ercole virtualization agent supports VMware and OVM.
-Once you have installed the agent (the installation process is the same as the standard ercole-agent), you have to insert the VMware VCenter/OVM Manager credentials/settings in the config.json file.
-For example:
-```
-    "hypervisors": [
-        { 
-            "type": "vmware", 
-            "endpoint": "10.20.30.40", 
-            "username": "reader@vsphere.local", 
-            "password": "reader"
-        },
-        {
-            "type": "ovm",
-            "endpoint": "10.20.30.40",
-            "username": "reader",
-            "password": "R34d3r",
-            "ovmuserkey": "92838932423",
-            "ovmcontrol": "/path/to/ovmcontrol"
-        }
-    ]
-```
-
 ### Windows installation
 
 #### Requirements
@@ -229,3 +204,54 @@ Before starting the agent, you have to modify the config.json file, located on t
 ::: danger DEBUG
 If you want to debug the execution of the agent, you can execute it directly into the command line prompt from the base directory (ex. /opt/ercole-agent)
 :::
+
+## Ercole agent installation
+
+#### Requirements for VMWare
+
+* PowerShell version >= 2
+* VSphere power CLI module
+* Open port 443 from ercole-agent-virtualization to ovmmanager 
+* Read only user access to the VSphere
+
+#### Requirements for Oracle VM
+
+* ovm_vmcontrol installed on ovm manager
+* Key exchange with ovm manager user who can run ovm_vmcontrol
+* Vms must not contain spaces (they will be ignored)
+* sshpass installed on server that have ercole-agent-virtualization installed
+* ovmcli installed on ovmmanager (From version 3.2.1)
+* Port 10000 open from ercole-agent-virtualization to ovmmanager
+
+#### Installation
+
+* Install agent as root user:
+
+```
+yum install -y https://<ip_ercole_server>/packages/ercole-agent-virtualization-<version>-1.el7.x86_64.rpm
+```
+
+Once you have installed the agent, you have to insert the VMware VCenter/OVM Manager credentials/settings in the config.json file.
+For example:
+```
+    "hypervisors": [
+        { 
+            "type": "vmware", 
+            "endpoint": "10.20.30.40", 
+            "username": "reader@vsphere.local", 
+            "password": "reader"
+        },
+        {
+            "type": "ovm",
+            "endpoint": "10.20.30.40",
+            "username": "reader",
+            "password": "R34d3r",
+            "ovmuserkey": "92838932423",
+            "ovmcontrol": "/path/to/ovmcontrol"
+        }
+    ]
+```
+
+If you use only one technology you have to delete the rows about the technology that you won't use.
+
+* systemctl start ercole-agent-virtualization
