@@ -31,6 +31,7 @@ module.exports = {
     repo: 'ercole-io/ercole-server',
     nav: [
       { text: 'Home', link: '/' },
+      { text: 'Demo', link: 'https://demo.ercole.io' },
       { text: 'Professional support', link: 'https://www.sorint.it/ercole' },
       { text: 'Gitter', link: 'https://gitter.im/ercole-io/community' },
     ]
