@@ -74,6 +74,7 @@ Main parameter are:
 | agent.user | Ercole agent user | user |
 | agent.password | Ercole agent user password | password |
 | server.port | Ercole server port | 9080 |
+| server.servlet.session.timeout | Session timeout | 30m |
 
 * systemctl daemon-reload
 * systemctl start ercole-server
