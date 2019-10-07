@@ -62,7 +62,7 @@ yum install "rpm_ercole_server" (ex. ercole-server-1.5.0n-1.el7.x86_64.rpm - htt
 
 In order to configure ercole server you have to customize the file /opt/ercole-server/application.properties with the parameters different from the default.
 
-Main parameter are:
+Main parameters are:
 
 | Parameter | Description | Default |
 |----------------------------|------------------------------|-----------------------------------------|
@@ -75,6 +75,22 @@ Main parameter are:
 | agent.password | Ercole agent user password | password |
 | server.port | Ercole server port | 9080 |
 | server.servlet.session.timeout | Session timeout | 30m |
+
+Emailer parameters are:
+
+| Parameter | Description | Default |
+|----------------------------|------------------------------|-----------------------------------------|
+| spring.mail.host | SMTP server | smtp.domain.com |
+| spring.mail.port | Port of the SMTP server | 465 |
+| spring.mail.username | STMP username | user |
+| spring.mail.password | SMTP password | password |
+| spring.mail.properties.mail.smtp.auth | Enable the authentication | true |
+| spring.mail.properties.mail.smtp.starttls.enable | Enable the start TLS | false |
+| spring.mail.protocol | Protocol of the emailer | smtps |
+| alert.mail.enabled | Enable the alert notifications via emails | false |
+| alert.mail.severity | Minimum severity level of alerts | WARNING |
+| alert.mail.from | Sender of the alerts email | alert@ercole.io |
+| alert.mail.to | Destinations of the alerts email | mail1@domain.com,mail2@domain.com |
 
 * systemctl daemon-reload
 * systemctl start ercole-server
