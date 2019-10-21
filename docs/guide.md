@@ -326,9 +326,15 @@ ERCOLE:/data/app/oracle/product/12.2.0/dbhome_1:N
 #### Installation
 
 * Download/get agent:
-
 ```
 https://<ip_ercole_server>/packages/ercole-agent-aix-latest-1.aix6.1.noarch.rpm
+```
+
+* Create the ercole user
+```
+useradd -g dba -d /home/ercole-agent -m -s /bin/bash -c "Ercole agent user" ercole
+touch /var/log/ercole-agent.log
+chown ercole /var/log/ercole-agent.log
 ```
 
 * Install it with rpm
