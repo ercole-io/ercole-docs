@@ -293,9 +293,76 @@ Before starting the agent, you have to modify the config.json file, located on t
 /sbin/init.d/ercole-agent start
 ```
 
-You can find the log on /var/adm/ercole-agent.log.
+You can find the log on `/var/adm/ercole-agent.log`.
 
-## Ercole agent installation
+### AIX Installation
+
+#### Requirements
+
+* All the Oracle Database must be in the oratab file:
+
+```
+# This file is used by ORACLE utilities.  It is created by root.sh
+# and updated by either Database Configuration Assistant while creating
+# a database or ASM Configuration Assistant while creating ASM instance.
+
+# A colon, ':', is used as the field terminator.  A new line terminates
+# the entry.  Lines beginning with a pound sign, '#', are comments.
+
+# Entries are of the form:
+#   $ORACLE_SID:$ORACLE_HOME:<N|Y>:
+#
+# The first and second fields are the system identifier and home
+# directory of the database respectively.  The third field indicates
+# to the dbstart utility that the database should , "Y", or should not,
+# "N", be brought up at system boot time.
+#
+# Multiple entries with the same $ORACLE_SID are not allowed.
+#
+#
+ERCOLE:/data/app/oracle/product/12.2.0/dbhome_1:N
+```
+
+#### Installation
+
+* Download/get agent:
+
+```
+https://<ip_ercole_server>/packages/ercole-agent-aix-latest-1.aix6.1.noarch.rpm
+```
+
+* Install it with rpm
+```
+rpm -ivh ercole-agent-aix-latest-1.aix6.1.noarch.rpm
+```
+
+* Agent configuration
+
+Before starting the agent, you have to modify the config.json file, located on the installation path (`/opt/ercole-agent-aix/config.json`). 
+
+
+| Parameter | Description | Default |
+|------------------------|---------------------------------------------------------------------------------------|-----------|
+| Hostname | if "default" the agent takes the server hostname, otherwise it takes the name written | default |
+| envtype | It accepts what you want (es. Production, PRD or PROD) | ercole |
+| location | It accepts what you want (es. Italy, IT or DC_IT) | ercole |
+| serverurl | Ercole server address | user |
+| serverusr | Ercole server user | password |
+| serverpsw | Ercole server password | user |
+| frequency | Schedulation window in hour (1 in a day by default) | password |
+| forcestats | If true it forces DBA_FEATURE_USAGE_STATISTICS refresh (recommended) |  |
+| EnableServerValidation | If false it accepts certificate self signed or not acknowledged |  |
+| oratab | Override the default oratab filename |  |
+
+* Now you can start the service:
+
+```
+/etc/rc.d/init.d/ercole-agent start
+```
+
+You can find the log on `/var/log/ercole-agent.log`.
+
+## Ercole agent virtualization installation
 
 #### Requirements for VMWare
 
