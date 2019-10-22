@@ -267,6 +267,9 @@ tar -zxvf ../ercole-agent-hpux-latest.tar.gz
 cd ..
 cp -r ercole-agent-hpux-latest /opt/ercole-agent-hpux       
 cp ercole-agent-hpux-latest/daemon_script/ercole-agent /sbin/init.d/ercole-agent
+useradd -g dba -d /home/ercole-agent -m -s /bin/bash -c "Ercole agent user" ercole
+touch /var/adm/ercole-agent.log
+chown ercole /var/adm/ercole-agent.log
 ```
 
 * Agent configuration
