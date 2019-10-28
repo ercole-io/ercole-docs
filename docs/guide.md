@@ -263,7 +263,8 @@ https://<ip_ercole_server>/packages/ercole-agent-hpux-latest.tar.gz
 ```
 mkdir ercole-agent-hpux-latest
 cd ercole-agent-hpux-latest
-tar -zxvf ../ercole-agent-hpux-latest.tar.gz
+gunzip ../ercole-agent-hpux-latest.tar.gz ../ercole-agent-hpux-latest.tar
+tar -zxvf ../ercole-agent-hpux-latest.tar
 cd ..
 cp -r ercole-agent-hpux-latest /opt/ercole-agent-hpux       
 cp ercole-agent-hpux-latest/daemon_script/ercole-agent /sbin/init.d/ercole-agent
@@ -290,7 +291,7 @@ Before starting the agent, you have to modify the config.json file, located on t
 | EnableServerValidation | If false it accepts certificate self signed or not acknowledged |  |
 | oratab | Override the default oratab filename |  |
 
-* Now you can start the service:
+* Now you can start the service with the ercole user:
 
 ```
 /sbin/init.d/ercole-agent start
@@ -363,7 +364,7 @@ Before starting the agent, you have to modify the config.json file, located on t
 | EnableServerValidation | If false it accepts certificate self signed or not acknowledged |  |
 | oratab | Override the default oratab filename |  |
 
-* Now you can start the service:
+* Now you can start the service with the root user:
 
 ```
 /etc/rc.d/init.d/ercole-agent start
