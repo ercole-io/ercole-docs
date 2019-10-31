@@ -263,7 +263,7 @@ https://<ip_ercole_server>/packages/ercole-agent-hpux-latest.tar.gz
 ```
 mkdir ercole-agent-hpux-latest
 cd ercole-agent-hpux-latest
-gunzip ../ercole-agent-hpux-latest.tar.gz ../ercole-agent-hpux-latest.tar
+gunzip ../ercole-agent-hpux-latest.tar.gz
 tar -zxvf ../ercole-agent-hpux-latest.tar
 cd ..
 cp -r ercole-agent-hpux-latest /opt/ercole-agent-hpux       
@@ -378,7 +378,7 @@ You can find the log on `/var/log/ercole-agent.log`.
 
 * PowerShell version >= 2
 * VSphere power CLI module
-* Open port 443 from ercole-agent-virtualization to ovmmanager 
+* Open port 443 from ercole-agent-virtualization to vsphere 
 * Read only user access to the VSphere
 * Set this powershell option: "Set-PowerCLIConfiguration -Scope User -ParticipateInCEIP $false -InvalidCertificateAction ignore"
 
