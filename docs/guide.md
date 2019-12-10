@@ -473,7 +473,7 @@ Before starting the agent, you have to modify the config.json file, located on t
 service ercole-agent-exadata start
 ```
 
-You can check the execution through the journalctl : 
+You can check log at : 
 
 ```
 /var/log/ercole-agent-exadata.log 
