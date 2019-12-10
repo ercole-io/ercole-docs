@@ -423,3 +423,59 @@ For example:
 If you use only one technology you have to delete the rows about the technology that you won't use.
 
 * systemctl start ercole-agent-virtualization
+
+## Ercole agent-exadata installation
+
+In order to permit the correct comunication between agent and server, you have to open these port on your firewall from agent to server (one way):
+
+* 9080  if you want http communication protocol
+* 443 if you want https communication protocol
+
+::: warning ATTENZIONE
+If you want to use https communication protocol, you have to provide a signed certificate
+:::
+
+### Operating System support
+
+* Red Hat/Oracle Linux/CentOS 6.x-7.x 
+
+
+###  Installation
+
+* Install agent as root user:
+
+```
+yum install -y https://demo.ercole.io/packages/ercole-agent-exadata-1.6.0-1.el7.x86_64.rpm
+```
+
+* Agent configuration
+
+The installer will create the service "ercole-agent-exadata" and the default path will be /opt/ercole-agent-exadata.
+Before starting the agent, you have to modify the config.json file, located on the installation path. 
+
+
+| Parameter | Description | Default |
+|------------------------|---------------------------------------------------------------------------------------|-----------|
+| Hostname | enter a value other than the default value | default |
+| envtype | It accepts what you want (es. Production, PRD or PROD) | ercole |
+| location | It accepts what you want (es. Italy, IT or DC_IT) | ercole |
+| serverurl | Ercole server address | user |
+| serverusr | Ercole server user | password |
+| serverpsw | Ercole server password | user |
+| frequency | Schedulation window in hour (1 in a day by default) | password |
+| hosttype | type of host | exadata  |
+| EnableServerValidation | If false it accepts certificate self signed or not acknowledged |  |
+
+
+* Now you can start the service:
+
+```
+service ercole-agent-exadata start
+```
+
+You can check the execution through the journalctl : 
+
+```
+/var/log/ercole-agent-exadata.log 
+```
+
