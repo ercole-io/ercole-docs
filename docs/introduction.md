@@ -43,11 +43,14 @@ Have you ever tried to fill this complicated file? Ercole does it in one click.
 
 These will be the next steps:
 
-* HPUX Agent
 * Solaris Agent
-* Oracle VM capping integration
 * LDOM capping integration
 * Weblogic Licensing
 * Performance & Tuning Tab (latency, buffer gets, etc...)
-* Exadata patching advisor
-* AIX Agent
+* SQLSERVER integration
+* Java licenses
+* Percentage of database migration to open source
+* Linux patch advisor
+* MYSQL integration
+* PostgreSQL integration
+
