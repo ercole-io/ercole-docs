@@ -20,7 +20,8 @@ module.exports = {
         algolia: {},
         sidebar: [
           ['/introduction', 'Introduction'],
-          ['/guide', 'Getting Started'],
+          ['/guide-1.x', 'Getting Started Ercole 1.x'],
+          ['/guide-2.x', 'Getting Started Ercole 2.x'],
           ['/architecture', 'Architecture']
         ]
       },
@@ -31,6 +32,7 @@ module.exports = {
     repo: 'ercole-io/ercole-server',
     nav: [
       { text: 'Home', link: '/' },
+      { text: 'Download', link: 'https://repository.ercole.io' },
       { text: 'Demo', link: 'https://demo.ercole.io' },
       { text: 'Professional support', link: 'https://www.sorint.it/ercole' },
       { text: 'Gitter', link: 'https://gitter.im/ercole-io/community' },
@@ -42,6 +44,9 @@ module.exports = {
       {
         'ga': 'UA-146622093-1'
       }
+    ],
+    [
+      '@markspec/vuepress-plugin-footnote'
     ]
   ]
 }

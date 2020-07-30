@@ -9,6 +9,7 @@
     "vuepress": "^1.0.0-rc.1"
   },
   "dependencies": {
+    "@markspec/vuepress-plugin-footnote": "^1.1.1",
     "cookieconsent": "^3.1.1",
     "vue-cookie-law": "^1.10.0"
   }
