@@ -116,8 +116,25 @@ It's highly recommended to configure it by creating files in `/etc/ercole/conf.d
 * `APIService.AuthenticationProvider.LDAPGroupFilter`, when `Type` is `ldap`, it's unknown the purpose of this field but put `(memberUid=%s)` 
 * `APIService.OperatingSystemAggregationRules` are the rules used to map OS names + Version to product
 * `RepoService.UpstreamRepositories` contains the upstream repository from which the artifacts are downloaded
-* 
-
+    * `Name` contains the name of the repository
+    * `Type` contains the type of the repository. The allowed values are `github-release`, `directory`, `ercole-reposervice`
+    * `URL` contains the URL used to find the files. In the case of `github-release` it should the URL of the API that return the releases list. e.g https://api.github.com/repos/ercole-io/ercole-agent/releases. In the case of `directory` it should be the directory in which the artifacts are contained. In the case of `ercole-reposervice` it should be the url of a directory that contains the directory `all` and the file `index.json`.
+* `RepoService.HTTP.Enable` contains true if reposervice should serve the files via HTTP
+* `RepoService.HTTP.RemoteEndpoint` contains the url used by clients to reach the repository via HTTP
+* `RepoService.HTTP.BindIP` contains the IP on which reposervice listen for HTTP requests
+* `RepoService.HTTP.Port` contains the port on which reposervice listen for HTTP requests
+* `RepoService.HTTP.LogHTTPRequest` true if reposervice should log for every received HTTP request
+* `RepoService.SFTP.Enable` contains true if reposervice should serve the files via SFTP
+* `RepoService.SFTP.RemoteEndpoint` contains the url used by clients to reach the repository via SFTP
+* `RepoService.SFTP.BindIP` contains the IP on which reposervice listen for SFTP
+* `RepoService.SFTP.Port` contains the port on which reposervice listen for SFTP
+* `RepoService.SFTP.PrivateKey` contains the private key used by the SFTP server
+* `RepoService.SFTP.LogConnections` true if reposervice should log the connections from SFTP clients
+* `RepoService.SFTP.DebugConnections` true if reposervice should log degug messages of the connections from SFTP clients
+* `ChartService.RemoteEndpoint` contains the URI used by the clients to connect to the chartservice.
+* `ChartService.BindIP` contains the IP Address on which chart service listen.
+* `ChartService.Port` contains the port on which chart service listen.
+* `ChartService.LogHTTPRequest` enable the logging of the http request.
 
 ### Ercole usage
 Ercole is a command line tool so it can be used to perform some.
