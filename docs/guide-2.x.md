@@ -32,7 +32,7 @@
 ### Installation guide
 This installation guide is for RHEL8, but the steps can be easily adapted for RHEL7 
 
-* `curl https://repository.ercole.io/shared/ercole-rhel8.repo | tee /etc/yum.repos.d/ercole.repo`
+* `curl https://repository.ercole.io/shared/ercole-rhel8-x86_64.repo | tee /etc/yum.repos.d/ercole.repo`
 * `yum install ercole`
 * If your machine has multiple IP addresses, check and fix endpoints in `/etc/ercole/conf.d/20-ercolesetup.toml`
 * Review ercole configuration with `ercole show-config`
@@ -186,7 +186,7 @@ Ercole is a command line tool so it can be used to perform some.
 
 #### Install a package to rhelX from the ercole-reposervice
 The first thing to do is to create a repository file 
-* `curl https://repository.ercole.io/shared/ercole-rhel7.repo | tee /etc/yum.repos.d/ercole.repo`
+* `curl https://repository.ercole.io/shared/ercole-rhel7-x86_64.repo | tee /etc/yum.repos.d/ercole.repo`
 
 The next thing is to install the package with yum or dnf
 * `yum install ercole-agent` 
