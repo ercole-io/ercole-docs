@@ -40,9 +40,10 @@ This installation guide is for RHEL8, but the steps can be easily adapted for RH
 
 Ercole is configured automatically during the installation but you can edit the configuration by creating/files in `/etc/ercole/conf.d`. Its logs can be read with the command `journalctl -u ercole-dataservice -u ercole-alertservice -u ercole-apiservice -u ercole-reposervice -u ercole-chartservice` and can be updated as usually with a simple `yum update` unless in the new versions were introduced breaking changes.
 It is also recommeded to also install (jq)[https://stedolan.github.io/jq/download/].
+After the installation you may want to install ercole-web and configure nginx or to install artifacts
 
 ### Ercole configuration
-The configuration is written in [TOML](https://github.com/toml-lang/toml) syntax is stored in these files/directory in ascending order of priority. The properties specified in low priority configuration files are overriden by the values in high priority configuration files 
+The configuration is written in [TOML](https://github.com/toml-lang/toml) syntax and it is stored in these files/directory in ascending order of priority. The properties specified in low priority configuration files are overriden by the values in high priority configuration files 
 * `/opt/ercole/config.toml` (legacy config file) 
 * `/usr/share/ercole/config.toml` (distributor config file)
 * `/etc/ercole/ercole.toml`
@@ -50,9 +51,9 @@ The configuration is written in [TOML](https://github.com/toml-lang/toml) syntax
     * `/etc/ercole/conf.d/20-ercolesetup.toml` is a file created by `ercole-setup` utility that contains known host specific configuration like remote endpoints, paths to certificates/keys and inter microservice configuration params
 * `~/.config/ercole.toml`
 * `./config.toml`
-* A optional file specified to the `ercole` using the `-c` option.
+* An optional file specified to the `ercole` using the `-c` option.
 
-It's highly recommended to configure it by creating files in `/etc/ercole/conf.d` (e.g `/etc/ercole/conf.d/50-myconf.toml`) 
+It's highly recommended to configure it by creating files in `/etc/ercole/conf.d` (e.g `/etc/ercole/conf.d/50-myconf.toml`). If you change the `RemoteEndpoint`s of the microservices you may need to re-run `ercole-setup`(or `ercoleweb-setup` if you have installed ercole-web).
 
 #### (main) Configuration properties list
 * `Mongodb.URI` is the uri used to connect to the mongodb database. The default value is `mongodb://localhost:27017/ercole`
@@ -136,8 +137,56 @@ It's highly recommended to configure it by creating files in `/etc/ercole/conf.d
 * `ChartService.Port` contains the port on which chart service listen.
 * `ChartService.LogHTTPRequest` enable the logging of the http request.
 
-### Ercole usage
+### Notes about the internal repository
+Ercole repository is tought to be public and visibile to everyone so it shouldn't contains private informations like the password or private keys. The main ercole repository is (https://repository.ercole.io)[https://repository.ercole.io]. It is served via HTTP and via SFTP so you can download files in various mode like:
+*   `wget http://myawesomeercole2.local:11114/ping.txt`
+*   `curl http://myawesomeercole2.local:11114/ping.txt > /tmp/ping.txt`
+*   `sftp -P 11115 myawesomeercole2.local/ping.txt /tmp/ping.txt`
+Some repository files/directory are managed using the `ercole repo` subcommands. Others files/directories can be safely modified.
+
+Managed files:
+    * `ping.txt` is a file used to check the liveness of the microservices. It's really managed but it's recommended to not modify it
+    * `index.json` contains the cached list of available artifacts. Can be safely removed for forcing the rebuild of the cache when the next `repo` subcommands is run.
+    * `all/` contains the symlinks to all installed (and managed) artifacts 
+    * `rhel/*` contains the RPM repositories of the packages for every RHEL versions
+    * `win/*` contains various ercole-agent setup files for windows
+    * `aix/` contains the RPM repositories of the packages for every AIX versions
+    * `aix-tar-gz/` alternative artifacts of agents for AIX
+    * `hpux/` contains the agents for HPUX
+    
+Unmanaged known files:
+    * `shared/` contains various files like some .repo files
+    * `snapshots/` is a directory present in (repository.ercole.io)[https://repository.ercole.io] that is used to store snapshots of all projects. The snapshots aren't tought to be used outside the development.
+
+The public repository don't serve files via SFTP.
+It may be a good idea to create multiple ercole reposervice for directory for stable/testing/unstable or PRD/COL/TST
+### (main) ercole usage
 Ercole is a command line tool so it can be used to perform some.
 
 * `ercole version` print the version of ecole
-* `ercole show-config` 
+* `ercole show-config` show the ercole's actual configuration
+* `ercole fire-hostdata` send a hostdata stored in a json file or from a stdin to ercole-dataservice
+* `ercole migrate` migrate the structure of the mongodb database
+* `ercole serve` start the services. Every microservices can be turned on/off esplicitily using the various --enable options like --enable-dataservice
+* `ercole api` is a group of subcoommands used to perform request data from ercole-apiservice
+* `ercole chart` is a group of subcoommands used to perform request data from ercole-chartservice 
+* `ercole repo` is a group of subcoommands used to manage the repository. Can accept the command --rebuild-cache to force the rebuild of the cache stored in `/var/lib/ercole/distributed_directory/index.json`
+    * `... list` lists the artifacts detected in the upstream repositories.
+    * `... info` get the informations about the specified artifacts.
+    * `... install` download and install the specified artifacts
+    * `... remove` uninstall the specified artifacts
+    * `... update` try to find newer version of all installed artifacts and install them
+
+### Various HOWTO/examples
+
+#### How to install a artifact
+*   The first thing to do is to find the available artifacts by running the command: ```ercole repo list```
+*   Choose the artifact you want
+*   Install it with for example with the command: ```ercole repo install ercole-agent/ercole-agent-rhel7@1.5.0```
+
+#### Install a package to rhelX from the ercole-reposervice
+The first thing to do is to create a repository file 
+* `curl https://repository.ercole.io/shared/ercole-rhel7.repo | tee /etc/yum.repos.d/ercole.repo`
+
+The next thing is to install the package with yum or dnf
+* `yum install ercole-agent` 
