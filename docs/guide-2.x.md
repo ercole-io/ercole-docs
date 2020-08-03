@@ -56,9 +56,11 @@ The configuration is written in [TOML](https://github.com/toml-lang/toml) syntax
 It's highly recommended to configure it by creating files in `/etc/ercole/conf.d` (e.g `/etc/ercole/conf.d/50-myconf.toml`). If you change the `RemoteEndpoint`s of the microservices you may need to re-run `ercole-setup`(or `ercoleweb-setup` if you have installed ercole-web).
 
 #### (main) Configuration properties list
+##### Mongodb.*
 * `Mongodb.URI` is the uri used to connect to the mongodb database. The default value is `mongodb://localhost:27017/ercole`.
 * `Mongodb.DBName` is the name of the mongodb database. The default value is `ercole`.
 * `Mongodb.Migrate` contains true if ercole should update/migrate the database schema, otherwise false. The default value is `true`. When ercole is started, it try to update the structure of the database by updating the schemas, updating the documents, creating the indexes, inserting default values.
+##### DataService.*
 * `DataService.RemoteEndpoint` contains the URI used by clients to connect to the dataservice.
 * `DataService.BindIP` contains the IP Address on which data service listen.
 * `DataService.Port` contains the port on which data service listen.
@@ -74,6 +76,7 @@ It's highly recommended to configure it by creating files in `/etc/ercole/conf.d
 * `DataService.ArchivedHostCleaningJob.Crontab` contains the (cron)[https://en.wikipedia.org/wiki/Cron] schedule expression for automatic deletion of archived hosts. 
 * `DataService.ArchivedHostCleaningJob.HourThreshold` contains the maximium number of hours in which a archived hostdata is retained. After this threshold the archived host will be deleted by the ArchivedHostCleaningJob.
 * `DataService.ArchivedHostCleaningJob.RunAtStartup` enable the running of the archived host cleaning job at startup. 
+##### AlertService.*
 * `AlertService.RemoteEndpoint` contains the URI used by the microservices to connect to the alertservice.
 * `AlertService.BindIP` contains the IP Address on which alert service listen.
 * `AlertService.Port` contains the port on which alert service listen.
@@ -93,6 +96,7 @@ It's highly recommended to configure it by creating files in `/etc/ercole/conf.d
 * `AlertService.Emailer.SMTPUsername` username used to authenticate to the SMTP server.
 * `AlertService.Emailer.SMTPPassword` password used to authenticate to the SMTP server.
 * `AlertService.Emailer.DisableSSLCertificateValidation` true if disable the authentication of the SMTP server.
+##### APIService.*
 * `APIService.RemoteEndpoint` contains the URI used by the clients to connect to the apiservice.
 * `APIService.BindIP` contains the IP Address on which api service listen.
 * `APIService.Port` contains the port on which api service listen.
@@ -116,6 +120,7 @@ It's highly recommended to configure it by creating files in `/etc/ercole/conf.d
 * `APIService.AuthenticationProvider.LDAPUserFilter`, when `Type` is `ldap`, it's unknown the purpose of this field but put `(uid=%s)`.
 * `APIService.AuthenticationProvider.LDAPGroupFilter`, when `Type` is `ldap`, it's unknown the purpose of this field but put `(memberUid=%s)`.
 * `APIService.OperatingSystemAggregationRules` are the rules used to map OS names + Version to product.
+##### RepoService.*
 * `RepoService.UpstreamRepositories` contains the upstream repository from which the artifacts are downloaded.
     * `Name` contains the name of the repository.
     * `Type` contains the type of the repository. The allowed values are `github-release`, `directory`, `ercole-reposervice`.
@@ -132,6 +137,7 @@ It's highly recommended to configure it by creating files in `/etc/ercole/conf.d
 * `RepoService.SFTP.PrivateKey` contains the private key used by the SFTP server.
 * `RepoService.SFTP.LogConnections` true if reposervice should log the connections from SFTP clients.
 * `RepoService.SFTP.DebugConnections` true if reposervice should log degug messages of the connections from SFTP clients.
+#### ChartService.*
 * `ChartService.RemoteEndpoint` contains the URI used by the clients to connect to the chartservice.
 * `ChartService.BindIP` contains the IP Address on which chart service listen.
 * `ChartService.Port` contains the port on which chart service listen.
