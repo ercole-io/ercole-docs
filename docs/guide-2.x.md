@@ -137,7 +137,7 @@ It's highly recommended to configure it by creating files in `/etc/ercole/conf.d
 * `RepoService.SFTP.PrivateKey` contains the private key used by the SFTP server.
 * `RepoService.SFTP.LogConnections` true if reposervice should log the connections from SFTP clients.
 * `RepoService.SFTP.DebugConnections` true if reposervice should log degug messages of the connections from SFTP clients.
-#### ChartService.*
+##### ChartService.*
 * `ChartService.RemoteEndpoint` contains the URI used by the clients to connect to the chartservice.
 * `ChartService.BindIP` contains the IP Address on which chart service listen.
 * `ChartService.Port` contains the port on which chart service listen.
