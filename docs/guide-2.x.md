@@ -172,7 +172,7 @@ Ercole is a command line tool so it can be used to perform some.
 * `ercole version` print the version of ecole.
 * `ercole show-config` show the ercole's actual configuration.
 * `ercole fire-hostdata` send a hostdata stored in a json file or from a stdin to ercole-dataservice.
-* `ercole migrate` migrate the structure of the mongodb database.
+* `ercole migrate` migrate the structure of the mongodb database from a previous one to the latest.
 * `ercole serve` start the services. Every microservices can be turned on/off esplicitily using the various --enable options like --enable-dataservice.
 * `ercole api` is a group of subcommands used to perform request data from ercole-apiservice.
 * `ercole chart` is a group of subcommands used to perform request data from ercole-chartservice.
