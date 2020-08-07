@@ -450,7 +450,7 @@ On windows it's required to have powershell >= 2.
 [1] Except when Virtualization feature is enabled
 
 ### Configuration
-Ercole can be configured modifying the content of the `config.json` stored in `/opt/ercole-agent/config.json` (Linux) or `C:\ercoleAgent\config.json` (Windows).
+Ercole-agent can be configured modifying the content of the `config.json` stored in `/opt/ercole-agent/config.json` (Linux) or `C:\ercoleAgent\config.json` (Windows).
 The configuration properties are:
 * `Hostname`: If the value is `default`, the hostname used to identifying the agents is the hostname of the host, otherwise it's the value of the `Hostname` property. The default value is `default`.
 * `Environment`: It's the environment of the machine. e.g TST, PRD, DEV, COLL, ...
@@ -490,6 +490,18 @@ The configuration properties are:
 * `Features.Virtualization.Hypervisors.OvmUserKey`: it's the user ID of the user on ovmmanger that have exchanged keys with the components. 
 * `Features.Virtualization.Hypervisors.OvmControl`: contains the /path/to/ovmcontrol.
 
+### Oracle/Database target
+#### Requirements
+* Oracle Database version >= 9i
+* On linux exist the file /etc/oratab with the list of databases.
+
+#### Configuration (Features.OracleDatabase.*)
+* `Features.OracleDatabase.Enabled`: true if Oracle/Database support should be enabled.
+* `Features.OracleDatabase.FetcherUser`: name of the user that should be used for fetching the informations. If the value is empty, it's the user that is running the agent.
+* `Features.OracleDatabase.Oratab`: it's the /path/to/the/oratab, the file that contains the list of DBs
+* `Features.OracleDatabase.AWR`: it's the number of Automatic workload repository
+* `Features.OracleDatabase.Forcestats`: true if enable the running of fetch/stats fetcher
+
 ### Oracle/Exadata target
 #### Requirements
 The exadata component should not be virtualized.
@@ -508,3 +520,62 @@ The exadata component should not be virtualized.
 * `Features.MicrosoftSQLServer.FetcherUser`: name of the user that should be used for fetching the informations. If the value is empty, it's the user that is running the agent. It's useless...
 
 ## Ercole-agent-perl
+#### Requirements
+* perl >= 5.8.8
+* Oracle Database version >= 9i
+* Exist the file `/etc/oratab`(AIX, HPUX) OR the file `/var/etc/oracle/oratab`(solaris) with the list of databases.
+
+### Solaris installation
+1. Download the agent from the repository
+2. `cd /`
+3. `tar xvf /path/to/ercole-agent-perl-<version>-1.solaris11.noarch.tar.gz` 
+4. `svcadm restart manifest-import`
+5. `svcadm enable ercole-agent-perl`
+
+#### Maintenance
+* The service can be restarted with `svcadm restart ercole-agent-perl`.
+* The log can be usually found in `/var/svc/log/ercole-agent-perl:default.log`.
+* The state can be queried with `svcs -x ercole-agent-perl`
+
+### AIX installation
+1. Download the agent from the repository
+2. `useradd -g dba -d /home/ercole-agent -m -s /bin/bash -c "Ercole agent user" ercole`
+4. `touch /var/log/ercole-agent-perl.log`
+5. `chown ercole /var/log/ercole-agent-perl.log`
+6. `rpm -ivh ercole-agent-perl-<version>-1.aix6.1.noarch.rpm`
+7. `/etc/rc.d/init.d/ercole-agent-perl start`
+
+#### Maintenance
+* The service can be restarted with `/etc/rc.d/init.d/ercole-agent-perl restart`.
+* The log can be usually found in `/var/log/ercole-agent.log`.
+* The state can be queried with `ps -ef | grep ercole-agent`
+
+### HPUX installation
+1. Download the agent from the repository
+2. `cd /`
+3. `tar xvf /path/to/ercole-agent-perl-<version>-1.hpux.noarch.tar.gz` 
+4. `useradd -g dba -d /home/ercole-agent -m -s /bin/bash -c "Ercole agent user" ercole`
+4. `touch /var/adm/ercole-agent.log`
+5. `chown ercole /var/adm/ercole-agent.log`
+6. `/sbin/init.d/ercole-agent start`
+
+#### Maintenance
+* The service can be restarted with `/sbin/init.d/ercole-agent restart`.
+* The log can be found in `/var/adm/ercole-agent.log`.
+* The state can be queried with `ps -ef | grep ercole-agent`
+
+### Configuration
+Ercole-agent-perl can be configured modifying the content of the `config.json` stored in `/opt/ercole-agent/config.json` (Linux).
+The configuration properties are:
+* `hostname`: If the value is `default`, the hostname used to identifying the agents is the hostname of the host, otherwise it's the value of the `Hostname` property. The default value is `default`.
+* `envtype`: It's the environment of the machine. e.g TST, PRD, DEV, COLL, ...
+* `location`: It's the physical location of the host. e.g Italy, Germany, France, ...
+* `serverurl`: It's the base URL of ercole-dataservice to which are sent the hostdatas.
+* `serverusr`: It's the username used by agent to be authenticated by ercole-dataservice.
+* `serverpsw`: It's the password used by agent to be authenticated by ercole-dataservice.
+* `frequency`: Is the number of hour between different runs.
+* `forcestats`: True if the fetcher fetch/*/stats should be run
+* `EnableServerValidation`: True if ercole-agent should validate ercole-dataservice https certificate.
+* `oratab`: it's the /path/to/the/oratab, the file that contains the list of DBs
+* `AWR`: it's the number of Automatic workload repository
+* `UseCurl`: true if the agent should use curl to send the hostdata. Otherwise use the internal perl library. On solaris the internal library seems to not work.
