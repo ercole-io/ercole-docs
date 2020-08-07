@@ -153,8 +153,10 @@ http {
 # FE.APIService.RemoteEndpoint = "https://<myip>/api"
 # FE.ChartService.RemoteEndpoint = "https://<myip>/chart"
 ```
-* If your machine has multiple IP addresses, check and fix endpoints in `/etc/ercole/conf.d/20-ercolesetup.toml`. Then run the command `ercoleweb-setup`.
+* If your machine has multiple IP addresses, check and fix endpoints in `/etc/ercole/conf.d/20-ercolesetup.toml`.
+* If you want change the URI used to connect to mongodb, run the command `echo 'Mongodb.URI = "mongodb://user:pass@ip:port/ercole"' > /etc/ercole/conf.d/40-mongoconf.toml` with the right [Mongo URI](https://docs.mongodb.com/manual/reference/connection-string/).
 * Review ercole configuration with `ercole show-config`
+* If you have changed ercole configuration, run the command `ercole-setup`
 * `systemctl start ercole`
 * `systemctl start enable nginx` 
 * `systemctl start nginx`
@@ -229,7 +231,7 @@ It's highly recommended to configure it by creating files in `/etc/ercole/conf.d
 
 #### (main) Configuration properties list
 ##### Mongodb.*
-* `Mongodb.URI` is the uri used to connect to the mongodb database. The default value is `mongodb://localhost:27017/ercole`.
+* `Mongodb.URI` is the [uri](https://docs.mongodb.com/manual/reference/connection-string/) used to connect to the mongodb database. The default value is `mongodb://localhost:27017/ercole`.
 * `Mongodb.DBName` is the name of the mongodb database. The default value is `ercole`.
 * `Mongodb.Migrate` contains true if ercole should update/migrate the database schema, otherwise false. The default value is `true`. When ercole is started, it try to update the structure of the database by updating the schemas, updating the documents, creating the indexes, inserting default values.
 ##### DataService.*
