@@ -431,8 +431,7 @@ The installations instructions are written for RHEL8, but they are also applicab
 ### Windows installation
 On windows it's required to have powershell >= 2.
 1. Download the correct file from [https://repository.ercole.io/win/win/x86_64/](https://repository.ercole.io/win/win/x86_64/).
-2. Click to the setup and follow the installation wizard. At the moment the customization of installation directory doesn't work correctly 
-(see [issue #186](https://github.com/ercole-io/ercole-agent/issues/186) and [issue #54](https://github.com/ercole-io/ercole-agent/issues/54)). 
+2. Click to the setup and follow the installation wizard. At the moment the customization of installation directory doesn't work correctly: it must be installed in `C:\ErcoleAgent` (see [issue #186](https://github.com/ercole-io/ercole-agent/issues/186) and [issue #54](https://github.com/ercole-io/ercole-agent/issues/54)). 
 
 ### Operating system level differences
 |                                       | RHEL5   | RHEL6     | RHEL7     | RHEL8     | Windows      |
