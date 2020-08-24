@@ -492,7 +492,6 @@ The configuration properties are:
 ### Oracle/Database target
 #### Requirements
 * Oracle Database version >= 9i
-* On linux exist the file /etc/oratab with the list of databases.
 
 #### Configuration (Features.OracleDatabase.*)
 * `Features.OracleDatabase.Enabled`: true if Oracle/Database support should be enabled.
@@ -522,7 +521,6 @@ The exadata component should not be virtualized.
 #### Requirements
 * perl >= 5.8.8
 * Oracle Database version >= 9i
-* Exist the file `/etc/oratab`(AIX, HPUX) OR the file `/var/etc/oracle/oratab`(solaris) with the list of databases.
 
 ### Solaris installation
 1. Download the agent from the repository
