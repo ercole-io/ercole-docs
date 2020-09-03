@@ -277,6 +277,7 @@ It's highly recommended to configure it by creating files in `/etc/ercole/conf.d
 * `APIService.LogHTTPRequest` enable the logging of the http request.
 * `APIService.ReadOnly` disable the APIs that modify the data
 * `APIService.EnableInsertingCustomPatchingFunction` enable the possibility to add/set a custom patching function.
+* `APIService.DebugOracleDatabaseAgreementsAssignmentAlgorithm` enable the verbosity of the assignment algorithm used to distribuite oracle database agreement licenses.
 * `APIService.AuthenticationProvider.Type` contains the authentication type. The allowed values are `basic` and `ldap`.
 * `APIService.AuthenticationProvider.Username` contains the username used to authenticate user when `Type` is `basic`. It also contains the username used by `ercole` to perform requests to APIService.
 * `APIService.AuthenticationProvider.Password` contains the password used to authenticate password when `Type` is `basic`. It also contains the password used by `ercole` to perform requests to APIService.
