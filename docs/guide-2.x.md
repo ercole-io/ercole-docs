@@ -244,10 +244,10 @@ It's highly recommended to configure it by creating files in `/etc/ercole/conf.d
 * `DataService.EnablePatching` enable the patching of hostdata. It's required for tagging the hosts and modifying Oracle Database license count values.
 * `DataService.AgentUsername` contains the username used to authenticate agents
 * `DataService.AgentPassword` contains the password used to authenticate agents 
-* `DataService.CurrentHostCleaningJob.Crontab` contains the (cron)[https://en.wikipedia.org/wiki/Cron] schedule expression for automatic archivial of the current (non archived). 
+* `DataService.CurrentHostCleaningJob.Crontab` contains the [cron](https://en.wikipedia.org/wiki/Cron) schedule expression for automatic archivial of the current (non archived). 
 * `DataService.CurrentHostCleaningJob.HourThreshold` contains the maximium number of hours in which a hostdata is considered up to date. After this threshold the host will be archived by the CurrentHostCleaningJob.
 * `DataService.CurrentHostCleaningJob.RunAtStartup` enable the running of the current host cleaning job at startup. 
-* `DataService.ArchivedHostCleaningJob.Crontab` contains the (cron)[https://en.wikipedia.org/wiki/Cron] schedule expression for automatic deletion of archived hosts. 
+* `DataService.ArchivedHostCleaningJob.Crontab` contains the [cron](https://en.wikipedia.org/wiki/Cron) schedule expression for automatic deletion of archived hosts. 
 * `DataService.ArchivedHostCleaningJob.HourThreshold` contains the maximium number of hours in which a archived hostdata is retained. After this threshold the archived host will be deleted by the ArchivedHostCleaningJob.
 * `DataService.ArchivedHostCleaningJob.RunAtStartup` enable the running of the archived host cleaning job at startup. 
 ##### AlertService.*
@@ -259,7 +259,7 @@ It's highly recommended to configure it by creating files in `/etc/ercole/conf.d
 * `AlertService.LogAlertThrows` enable the logging of throwing alerts.
 * `AlertService.PublisherUsername` contains the username used to authenticate the microservices.
 * `AlertService.PublisherPassword` contains the password used to authenticate the microservices.
-* `AlertService.FreshnessCheckJob.Crontab` contains the (cron)[https://en.wikipedia.org/wiki/Cron] schedule expression for automatic throws of NO_DATA alerts when a current host is not up to date. 
+* `AlertService.FreshnessCheckJob.Crontab` contains the [cron](https://en.wikipedia.org/wiki/Cron) schedule expression for automatic throws of NO_DATA alerts when a current host is not up to date. 
 * `AlertService.FreshnessCheckJob.HourThreshold` contains the maximium number of hours in which a hostdata is considered up to date. After this threshold a NO_DATA alert is thrown by the FreshnessCheckJob.
 * `AlertService.FreshnessCheckJob.RunAtStartup` enable the running of the freshness check job at startup. 
 * `AlertService.Emailer.Enabled` enable the notifying of the alerts by email.
@@ -319,7 +319,7 @@ It's highly recommended to configure it by creating files in `/etc/ercole/conf.d
 * `ChartService.LogHTTPRequest` enable the logging of the http request.
 
 ### Notes about the internal repository
-Ercole repository is tought to be public and visibile to everyone so it shouldn't contains private informations like the password or private keys. The main ercole repository is (https://repository.ercole.io)[https://repository.ercole.io]. It is served via HTTP and via SFTP so you can download files in various mode like:
+Ercole repository is tought to be public and visibile to everyone so it shouldn't contains private informations like the password or private keys. The main ercole repository is [https://repository.ercole.io](https://repository.ercole.io). It is served via HTTP and via SFTP so you can download files in various mode like:
 *   `wget http://myawesomeercole2.local:11114/ping.txt`
 *   `curl http://myawesomeercole2.local:11114/ping.txt > /tmp/ping.txt`
 *   `sftp -P 11115 myawesomeercole2.local/ping.txt /tmp/ping.txt`
@@ -337,7 +337,7 @@ Managed files:
     
 Unmanaged known files:
     * `shared/` contains various files like some .repo files.
-    * `snapshots/` is a directory present in (repository.ercole.io)[https://repository.ercole.io] that is used to store snapshots of all projects. The snapshots aren't tought to be used outside the development.
+    * `snapshots/` is a directory present in [https://repository.ercole.io](https://repository.ercole.io) that is used to store snapshots of all projects. The snapshots aren't tought to be used outside the development.
 
 The public repository don't serve files via SFTP.
 It may be a good idea to create multiple ercole reposervice for directory for stable/testing/unstable or PRD/COL/TST.
