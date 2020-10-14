@@ -11,6 +11,7 @@
   "dependencies": {
     "@markspec/vuepress-plugin-footnote": "^1.1.1",
     "cookieconsent": "^3.1.1",
-    "vue-cookie-law": "^1.10.0"
+    "vue-cookie-law": "^1.10.0",
+    "vuepress-plugin-google-tag-manager": "0.0.4"
   }
 }
