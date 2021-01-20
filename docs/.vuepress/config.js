@@ -8,7 +8,7 @@ module.exports = {
       description: 'Proactive Software Asset Management',
       text: '##You can find the service around Ercole on Sorint\'s Ercole services page).', link: 'https://www.sorint.it/ercole' 
     },
-      },
+  },
   themeConfig: {
     locales: {
       '/': {
@@ -20,8 +20,8 @@ module.exports = {
         algolia: {},
         sidebar: [
           ['/introduction', 'Introduction'],
-          ['/guide-1.x', 'Getting Started Ercole 1.x'],
           ['/guide-2.x', 'Getting Started Ercole 2.x'],
+          ['/guide-1.x', 'Getting Started Ercole 1.x'],
           ['/architecture', 'Architecture']
         ]
       },
@@ -29,9 +29,10 @@ module.exports = {
     logo: '/ercole.svg',
     sidebarDepth: 2,
     displayAllHeaders: true,
-    repo: 'ercole-io/ercole-server',
+    repo: 'ercole-io/ercole',
     nav: [
       { text: 'Home', link: '/' },
+      { text: 'Documentation', link: 'introduction' },
       { text: 'Download', link: 'https://repository.ercole.io' },
       { text: 'Demo', link: 'https://demo.ercole.io' },
       { text: 'Professional support', link: 'https://www.sorint.it/ercole' },
