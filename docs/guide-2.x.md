@@ -411,6 +411,7 @@ There are two different variant of ercole-agent: ercole-agent (go) and ercole-ag
 | Virtualization                        | yes               | no                |
 | (virtualization) Oracle/VM target     | yes               | no                |
 | (virtualization) VMWare/VMWare target | yes               | no                |
+| Unkown/CustomData target              | yes               | no                |
 | Oracle/Database target                | yes               | yes               |
 | Oracle/Exadata target                 | yes               | no                |
 | Microsoft/SQLServer target            | yes               | no                |
@@ -442,6 +443,7 @@ On windows it's required to have powershell >= 2.
 | `Features.OracleDatabase.Oratab` used | Yes     | Yes       | Yes       | Yes       | No           |
 | `ForcePwshVersion` property used      | No      | No        | No        | No        | Yes          |
 | Virtualization support                | Yes     | Yes       | Yes       | Yes       | No           |
+| Unknown/CustomData support            | Yes     | Yes       | Yes       | Yes       | No           |
 | Oracle/Database support               | Yes     | Yes       | Yes       | Yes       | Yes          |
 | Oracle/Exadata support                | Yes     | Yes       | Yes       | Yes       | No           |
 | Microsoft/SQLServer support           | No      | No        | No        | No        | Yes          |
@@ -488,6 +490,19 @@ The configuration properties are:
 * `Features.Virtualization.Hypervisors.Username`: contains the username used to authenticate the agent.
 * `Features.Virtualization.Hypervisors.OvmUserKey`: it's the user ID of the user on ovmmanger that have exchanged keys with the components. 
 * `Features.Virtualization.Hypervisors.OvmControl`: contains the /path/to/ovmcontrol.
+
+### Unknown/CustomData target
+Unknown/CustomData target is a ercole-agent feature that fetch additional unsupported (by ercole/ercole-agent) information by the host. It is not a alternative to a proper ercole-agent/ercole support to the feature.
+#### Requirements
+* The fetchers must have execute permission (+x)
+* Fetchers interpreters must be installed (e.g bash, python3, pwsh, ...)
+* The fetchers must print a JSON object to the stdout
+#### Configuration (Features.UnknownCustomData.*)
+* `Features.UnknownCustomData.Enabled`: true if the Unknown/CustomData support should be enabled.
+* `Features.UnknownCustomData.Fetchers`: list of the fetchers to be executed.
+* `Features.UnknownCustomData.Fetchers.FetcherUser`: name of the user that should be used to execute the fetche. If the value is empty, it's the user that is running the agent.
+* `Features.UnknownCustomData.Fetchers.Fetcher`: absolute or relative path to the fetcher. If the path is relative, the fetcher is executed with ercole-agent home as working directory.
+* `Features.UnknownCustomData.Fetchers.Arguments`: additional CLI arguments passed to the fetcher.
 
 ### Oracle/Database target
 #### Requirements
