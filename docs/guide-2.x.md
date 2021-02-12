@@ -74,6 +74,10 @@ http {
         # Load configuration files for the default server block.
         include /etc/nginx/default.d/*.conf;
 
+        location / {
+	        try_files $uri $uri/ /index.html =404;
+        }
+
         location /data/ {
             proxy_pass http://127.0.0.1:11111/;
         }
@@ -88,15 +92,6 @@ http {
 
         location /chart/ {
             proxy_pass http://127.0.0.1:11116/;
-        }
-
-
-        error_page 404 /404.html;
-            location = /40x.html {
-        }
-
-        error_page 500 502 503 504 /50x.html;
-            location = /50x.html {
         }
     }
 
@@ -120,6 +115,10 @@ http {
         # Load configuration files for the default server block.
         include /etc/nginx/default.d/*.conf;
 
+        location / {
+	        try_files $uri $uri/ /index.html =404;
+        }
+
         location /data/ {
             proxy_pass http://127.0.0.1:11111/;
         }
@@ -135,14 +134,6 @@ http {
         location /chart/ {
             proxy_pass http://127.0.0.1:11116/;
         }
-
-        error_page 404 /404.html;
-            location = /40x.html {
-        }
-
-        error_page 500 502 503 504 /50x.html;
-            location = /50x.html {
-       }
     }
 }
 ```
