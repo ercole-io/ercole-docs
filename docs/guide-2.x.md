@@ -95,6 +95,14 @@ http {
         }
     }
 
+    # Redirect http to https
+    # server {
+    #     listen 80 default_server;
+    # 
+    #     server_name _;
+    # 
+    #     return 301 https://$host$request_uri;
+    # }
 
     # Settings for a TLS enabled server.
     #
