@@ -249,6 +249,9 @@ It's highly recommended to configure it by creating files in `/etc/ercole/conf.d
 * `DataService.ArchivedHostCleaningJob.Crontab` contains the [cron](https://en.wikipedia.org/wiki/Cron) schedule expression for automatic deletion of archived hosts. 
 * `DataService.ArchivedHostCleaningJob.HourThreshold` contains the maximium number of hours in which a archived hostdata is retained. After this threshold the archived host will be deleted by the ArchivedHostCleaningJob.
 * `DataService.ArchivedHostCleaningJob.RunAtStartup` enable the running of the archived host cleaning job at startup. 
+* `DataService.FreshnessCheckJob.Crontab` contains the [cron](https://en.wikipedia.org/wiki/Cron) schedule expression for automatic throws of NO_DATA alerts when a current host is not up to date. 
+* `DataService.FreshnessCheckJob.HourThreshold` contains the maximium number of hours in which a hostdata is considered up to date. After this threshold a NO_DATA alert is thrown by the FreshnessCheckJob.
+* `DataService.FreshnessCheckJob.RunAtStartup` enable the running of the freshness check job at startup. 
 ##### AlertService.*
 * `AlertService.RemoteEndpoint` contains the URI used by the microservices to connect to the alertservice.
 * `AlertService.BindIP` contains the IP Address on which alert service listen.
@@ -258,9 +261,6 @@ It's highly recommended to configure it by creating files in `/etc/ercole/conf.d
 * `AlertService.LogAlertThrows` enable the logging of throwing alerts.
 * `AlertService.PublisherUsername` contains the username used to authenticate the microservices.
 * `AlertService.PublisherPassword` contains the password used to authenticate the microservices.
-* `AlertService.FreshnessCheckJob.Crontab` contains the [cron](https://en.wikipedia.org/wiki/Cron) schedule expression for automatic throws of NO_DATA alerts when a current host is not up to date. 
-* `AlertService.FreshnessCheckJob.HourThreshold` contains the maximium number of hours in which a hostdata is considered up to date. After this threshold a NO_DATA alert is thrown by the FreshnessCheckJob.
-* `AlertService.FreshnessCheckJob.RunAtStartup` enable the running of the freshness check job at startup. 
 * `AlertService.Emailer.Enabled` enable the notifying of the alerts by email.
 * `AlertService.Emailer.From` the source email address that is used to send emails. 
 * `AlertService.Emailer.To` the destination email addresses to which are sent the emails.
