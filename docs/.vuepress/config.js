@@ -48,11 +48,6 @@ module.exports = {
     ],
     [
       '@markspec/vuepress-plugin-footnote'
-    ],
-    ['vuepress-plugin-google-tag-manager',
-    {
-      'gtm': 'GTM-PQXX8NC'
-    }
-  ] 
+    ]
   ]
 }
