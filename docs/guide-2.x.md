@@ -147,12 +147,12 @@ http {
 ```
 * `mkdir -p /etc/pki/nginx/private`
 * `openssl req -nodes -x509 -newkey rsa:4096 -keyout /etc/pki/nginx/private/server.key -out /etc/pki/nginx/server.crt`.
-* Add the following lines to /etc/ercole/conf.d/20-ercolesetup.toml:
+* Optional: if you need to customize remote endpoint called by the frontend, add the following lines to `/etc/ercole/conf.d/20-ercolesetup.toml`:
 ```
 # FE.APIService.RemoteEndpoint = "https://<myip>/api"
 # FE.ChartService.RemoteEndpoint = "https://<myip>/chart"
 ```
-* If your machine has multiple IP addresses, check and fix endpoints in `/etc/ercole/conf.d/20-ercolesetup.toml`.
+* Optional: if your machine has multiple IP addresses, check and fix endpoints in `/etc/ercole/conf.d/20-ercolesetup.toml`.
 * If you want change the URI used to connect to mongodb, run the command `echo 'Mongodb.URI = "mongodb://user:pass@ip:port/ercole"' > /etc/ercole/conf.d/40-mongoconf.toml` with the right [Mongo URI](https://docs.mongodb.com/manual/reference/connection-string/).
 * Review ercole configuration with `ercole show-config`
 * If you have changed ercole configuration, run the command `ercole-setup`
