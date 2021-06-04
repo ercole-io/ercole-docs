@@ -190,8 +190,6 @@ Ercole is the backend component of ercole.io project.
 | users                  | ercole-chartservice  | 11116 | HTTP[1]   |
 | users                  | ercole-reposervice   | 11114 | HTTP[1]   |
 | agents                 | ercole-reposervice   | 11114 | HTTP[1]   |
-| users                  | ercole-reposervice   | 11115 | SSH       |
-| agents                 | ercole-reposervice   | 11115 | SSH       |
 
 [1] It is highly recommended to setup a reverse proxy between users/agents and ercole for avoiding to comunicate directly to the microservices using HTTP and opening too much ports, using for example nginx. See the istructions below.
 
