@@ -65,43 +65,44 @@ http {
     # for more information.
     include /etc/nginx/conf.d/*.conf;
 
+    # Redirect http to https
     server {
-        listen       80 default_server;
-        listen       [::]:80 default_server;
-        server_name  _;
-        root         /usr/share/ercole/web;
-
-        # Load configuration files for the default server block.
-        include /etc/nginx/default.d/*.conf;
-
-        location / {
-	        try_files $uri $uri/ /index.html =404;
-        }
-
-        location /data/ {
-            proxy_pass http://127.0.0.1:11111/;
-        }
-
-        location /api/ {
-            proxy_pass http://127.0.0.1:11113/;
-        }
-
-        location /repo/ {
-            proxy_pass http://127.0.0.1:11114/;
-        }
-
-        location /chart/ {
-            proxy_pass http://127.0.0.1:11116/;
-        }
+        listen 80 default_server;
+    
+        server_name _;
+    
+        return 301 https://$host$request_uri;
     }
 
-    # Redirect http to https
+    # If you don't want to redirect http to https, delete the above server section and uncomment this:
     # server {
-    #     listen 80 default_server;
-    # 
-    #     server_name _;
-    # 
-    #     return 301 https://$host$request_uri;
+    #     listen       80 default_server;
+    #     listen       [::]:80 default_server;
+    #     server_name  _;
+    #     root         /usr/share/ercole/web;
+
+    #     # Load configuration files for the default server block.
+    #     include /etc/nginx/default.d/*.conf;
+
+    #     location / {
+    #             try_files $uri $uri/ /index.html =404;
+    #     }
+
+    #     location /data/ {
+    #         proxy_pass http://127.0.0.1:11111/;
+    #     }
+
+    #     location /api/ {
+    #         proxy_pass http://127.0.0.1:11113/;
+    #     }
+
+    #     location /repo/ {
+    #         proxy_pass http://127.0.0.1:11114/;
+    #     }
+
+    #     location /chart/ {
+    #         proxy_pass http://127.0.0.1:11116/;
+    #     }
     # }
 
     # Settings for a TLS enabled server.
@@ -115,7 +116,6 @@ http {
         ssl_certificate_key "/etc/pki/nginx/private/server.key";
         ssl_session_cache shared:SSL:1m;
         ssl_session_timeout  10m;
-        ssl_ciphers PROFILE=SYSTEM;
         ssl_prefer_server_ciphers on;
 
         root         /usr/share/ercole/web;
