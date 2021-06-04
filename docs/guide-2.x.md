@@ -304,13 +304,6 @@ It's highly recommended to configure it by creating files in `/etc/ercole/conf.d
 * `RepoService.HTTP.BindIP` contains the IP on which reposervice listen for HTTP requests.
 * `RepoService.HTTP.Port` contains the port on which reposervice listen for HTTP requests.
 * `RepoService.HTTP.LogHTTPRequest` true if reposervice should log for every received HTTP request.
-* `RepoService.SFTP.Enable` contains true if reposervice should serve the files via SFTP.
-* `RepoService.SFTP.RemoteEndpoint` contains the url used by clients to reach the repository via SFTP.
-* `RepoService.SFTP.BindIP` contains the IP on which reposervice listen for SFTP.
-* `RepoService.SFTP.Port` contains the port on which reposervice listen for SFTP.
-* `RepoService.SFTP.PrivateKey` contains the private key used by the SFTP server.
-* `RepoService.SFTP.LogConnections` true if reposervice should log the connections from SFTP clients.
-* `RepoService.SFTP.DebugConnections` true if reposervice should log degug messages of the connections from SFTP clients.
 ##### ChartService.*
 * `ChartService.RemoteEndpoint` contains the URI used by the clients to connect to the chartservice.
 * `ChartService.BindIP` contains the IP Address on which chart service listen.
@@ -318,10 +311,9 @@ It's highly recommended to configure it by creating files in `/etc/ercole/conf.d
 * `ChartService.LogHTTPRequest` enable the logging of the http request.
 
 ### Notes about the internal repository
-Ercole repository is tought to be public and visibile to everyone so it shouldn't contains private informations like the password or private keys. The main ercole repository is [https://repository.ercole.io](https://repository.ercole.io). It is served via HTTP and via SFTP so you can download files in various mode like:
+Ercole repository is tought to be public and visibile to everyone so it shouldn't contains private informations like the password or private keys. The main ercole repository is [https://repository.ercole.io](https://repository.ercole.io). It is served via HTTP so you can download files in various mode like:
 *   `wget http://myawesomeercole2.local:11114/ping.txt`
 *   `curl http://myawesomeercole2.local:11114/ping.txt > /tmp/ping.txt`
-*   `sftp -P 11115 myawesomeercole2.local/ping.txt /tmp/ping.txt`
 Some repository files/directory are managed using the `ercole repo` subcommands. Others files/directories can be safely modified.
 
 Managed files:
@@ -338,7 +330,6 @@ Unmanaged known files:
     * `shared/` contains various files like some .repo files.
     * `snapshots/` is a directory present in [https://repository.ercole.io](https://repository.ercole.io) that is used to store snapshots of all projects. The snapshots aren't tought to be used outside the development.
 
-The public repository don't serve files via SFTP.
 It may be a good idea to create multiple ercole reposervice for directory for stable/testing/unstable or PRD/COL/TST.
 ### (main) ercole usage
 Ercole is a command line tool so it can be used to perform some.
