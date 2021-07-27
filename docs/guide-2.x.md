@@ -533,21 +533,21 @@ The exadata component should not be virtualized.
 
 #### Maintenance
 * The service can be restarted with `/etc/rc.d/init.d/ercole-agent-perl restart`.
-* The log can be usually found in `/var/log/ercole-agent.log`.
+* The log can be usually found in `/var/log/ercole-agent-perl.log`.
 * The state can be queried with `ps -ef | grep ercole-agent`
 
 ### HPUX installation
 1. Download the agent from the repository
-2. `cd /`
-3. `tar xvf /path/to/ercole-agent-perl-<version>-1.hpux.noarch.tar.gz` 
-4. `useradd -g dba -d /home/ercole-agent -m -s /bin/bash -c "Ercole agent user" ercole`
-4. `touch /var/adm/ercole-agent.log`
-5. `chown ercole /var/adm/ercole-agent.log`
-6. `/sbin/init.d/ercole-agent start`
+1. `cd /`
+1. `tar xvf /path/to/ercole-agent-perl-<version>-1.hpux.noarch.tar.gz` 
+1. `useradd -g dba -d /home/ercole-agent -m -s /bin/bash -c "Ercole agent user" ercole`
+1. `touch /var/adm/ercole-agent-perl.log`
+1. `chown ercole /var/adm/ercole-agent-perl.log`
+1. `/sbin/init.d/ercole-agent-perl start`
 
 #### Maintenance
-* The service can be restarted with `/sbin/init.d/ercole-agent restart`.
-* The log can be found in `/var/adm/ercole-agent.log`.
+* The service can be restarted with `/sbin/init.d/ercole-agent-perl restart`.
+* The log can be found in `/var/adm/ercole-agent-perl.log`.
 * The state can be queried with `ps -ef | grep ercole-agent`
 
 ### Configuration
@@ -565,3 +565,4 @@ The configuration properties are:
 * `oratab`: it's the /path/to/the/oratab, the file that contains the list of DBs
 * `AWR`: it's the number of Automatic workload repository
 * `UseCurl`: true if the agent should use curl to send the hostdata. Otherwise use the internal perl library. On solaris the internal library seems to not work.
+* `PrettyPrintHostdata`: if true, the agent will pretty print hostdata json (with right indentation and wrapping lines) before sent.
