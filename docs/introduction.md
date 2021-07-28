@@ -38,19 +38,3 @@ Find your over allocated DB server and use the licenses where you really need th
 
 **Auto filling of LMS Oracle audit file**
 Have you ever tried to fill this complicated file? Ercole does it in one click.
-
-## Next features
-
-These will be the next steps:
-
-* Solaris Agent
-* LDOM capping integration
-* Weblogic Licensing
-* Performance & Tuning Tab (latency, buffer gets, etc...)
-* SQLSERVER integration
-* Java licenses
-* Percentage of database migration to open source
-* Linux patch advisor
-* MYSQL integration
-* PostgreSQL integration
-
