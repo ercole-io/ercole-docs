@@ -1,4 +1,4 @@
-## Ercole + ercole-web + nginx common setup istructions
+## Ercole + ercole-web + nginx common setup instructions
 ### Requirements
 |     Component     | Prerequisite                                                                                 |
 |:-----------------:|----------------------------------------------------------------------------------------------|
@@ -191,7 +191,7 @@ Ercole is the backend component of ercole.io project.
 | users                  | ercole-reposervice   | 11114 | HTTP[1]   |
 | agents                 | ercole-reposervice   | 11114 | HTTP[1]   |
 
-[1] It is highly recommended to setup a reverse proxy between users/agents and ercole for avoiding to comunicate directly to the microservices using HTTP and opening too much ports, using for example nginx. See the istructions below.
+[1] It is highly recommended to setup a reverse proxy between users/agents and ercole for avoiding to comunicate directly to the microservices using HTTP and opening too much ports, using for example nginx. See the instructions below.
 
 ##### Suggested network/firewall rules
 |          From          |         To           |  Port |   Proto   |
@@ -226,7 +226,7 @@ The configuration is written in [TOML](https://github.com/toml-lang/toml) syntax
 
 It's highly recommended to configure it by creating files in `/etc/ercole/conf.d` (e.g `/etc/ercole/conf.d/50-myconf.toml`). If you change the `RemoteEndpoint`s of the microservices you may need to re-run `ercole-setup`(or `ercoleweb-setup` if you have installed ercole-web).
 
-#### (main) Configuration properties list
+#### Configuration properties list
 ##### Mongodb.*
 * `Mongodb.URI` is the [uri](https://docs.mongodb.com/manual/reference/connection-string/) used to connect to the mongodb database. The default value is `mongodb://localhost:27017/ercole`.
 * `Mongodb.DBName` is the name of the mongodb database. The default value is `ercole`.
@@ -275,22 +275,41 @@ It's highly recommended to configure it by creating files in `/etc/ercole/conf.d
 * `APIService.ReadOnly` disable the APIs that modify the data
 * `APIService.EnableInsertingCustomPatchingFunction` enable the possibility to add/set a custom patching function.
 * `APIService.DebugOracleDatabaseAgreementsAssignmentAlgorithm` enable the verbosity of the assignment algorithm used to distribuite oracle database agreement licenses.
-* `APIService.AuthenticationProvider.Type` contains the authentication type. The allowed values are `basic` and `ldap`.
-* `APIService.AuthenticationProvider.Username` contains the username used to authenticate user when `Type` is `basic`. It also contains the username used by `ercole` to perform requests to APIService.
-* `APIService.AuthenticationProvider.Password` contains the password used to authenticate password when `Type` is `basic`. It also contains the password used by `ercole` to perform requests to APIService.
-* `APIService.AuthenticationProvider.Username` contains the username used to authenticate user when `Type` is `basic`. It also contains the username used by `ercole` to perform requests to APIService.
-* `APIService.AuthenticationProvider.Password` contains the password used to authenticate password when `Type` is `basic`. It also contains the password used by `ercole` to perform requests to APIService.
+* `APIService.AuthenticationProvider.Type` contains the authentication type: the allowed values are `basic` or `ldap`.
+  * `basic` authentication provider type needs:
+    * `APIService.AuthenticationProvider.Username` contains the username used to authenticate.
+    It's also used as username by `ercole` to perform requests to APIService.
+    * `APIService.AuthenticationProvider.Password` contains the password used to authenticate password when `Type` is `basic`.
+    It's also used as password by `ercole` to perform requests to APIService.
+  * `ldap` authentication provider type needs:
+    * `APIService.AuthenticationProvider.Username` contains the username used by `ercole` to perform requests to APIService.
+    * `APIService.AuthenticationProvider.Password` contains the password used by `ercole` to perform requests to APIService.
+    * `APIService.AuthenticationProvider.Host`, contains the server used to authenticate the users.
+    * `APIService.AuthenticationProvider.Port`, contains the port used to connect to the LDAP server. e.g. 389.
+    * `APIService.AuthenticationProvider.LDAPBase`, contains the LDAP base of the realm. e.g. `dc=planetexpress,dc=com`.
+    * `APIService.AuthenticationProvider.LDAPUseSSL`, enable/disable SSL for connecting to the server.
+    * `APIService.AuthenticationProvider.LDAPBindDN`, contains the account used to authenticate to the LDAP server.
+    * `APIService.AuthenticationProvider.LDAPBindPassword`, contains the password account used to authenticate to the LDAP server.
+    * `APIService.AuthenticationProvider.LDAPUserFilter`, filter to search username matches, must contain `%s` that will be replaced with the username.
+    * Here it is a complete example working with a [docker OpenLDAP example](https://github.com/rroemhild/docker-test-openldap):
+    ```
+    [APIService.AuthenticationProvider]
+    Type = "ldap"
+    # User and Password used by other services to login to APIService
+    Username = "hermes" 
+    Password = "hermes"
+    Host = "127.0.0.1"
+    Port = 10389
+    LDAPBase = "dc=planetexpress,dc=com"
+    LDAPUseSSL = false
+    LDAPBindDN = "cn=admin,dc=planetexpress,dc=com"
+    LDAPBindPassword = "GoodNewsEveryone"
+    LDAPUserFilter = "(uid=%s)"
+    ```
+
 * `APIService.AuthenticationProvider.PrivateKey` contains the key used to sign the authentication JWT tokens.
 * `APIService.AuthenticationProvider.PublicKey` contains the key used to validate the authentication JWT tokens.
 * `APIService.AuthenticationProvider.TokenValidityTimeout` contains the maximum number of seconds on which the token is considered valid.
-* `APIService.AuthenticationProvider.Host`, when `Type` is `ldap`, contains the server used to authenticate the users.
-* `APIService.AuthenticationProvider.Port`, when `Type` is `ldap`, contains the port used to connect to the LDAP server. e.g. 389.
-* `APIService.AuthenticationProvider.LDAPBase`, when `Type` is `ldap`, contains the LDAP base of the realm. e.g. dc=planetexpress,dc=com.
-* `APIService.AuthenticationProvider.LDAPUseSSL`, when `Type` is `ldap`, enable/disable SSL for connecting to the server.
-* `APIService.AuthenticationProvider.LDAPBindDN`, when `Type` is `ldap`, contains the account used to authenticate to the LDAP server. e.g. cn=admin,dc=planetexpress,dc=com.
-* `APIService.AuthenticationProvider.LDAPBindPassword`, when `Type` is `ldap`, contains the password account used to authenticate to the LDAP server. e.g. GoodNewsEveryone.
-* `APIService.AuthenticationProvider.LDAPUserFilter`, when `Type` is `ldap`, it's unknown the purpose of this field but put `(uid=%s)`.
-* `APIService.AuthenticationProvider.LDAPGroupFilter`, when `Type` is `ldap`, it's unknown the purpose of this field but put `(memberUid=%s)`.
 * `APIService.OperatingSystemAggregationRules` are the rules used to map OS names + Version to product.
 ##### RepoService.*
 * `RepoService.UpstreamRepositories` contains the upstream repository from which the artifacts are downloaded.
@@ -329,26 +348,32 @@ Unmanaged known files:
     * `snapshots/` is a directory present in [https://repository.ercole.io](https://repository.ercole.io) that is used to store snapshots of all projects. The snapshots aren't tought to be used outside the development.
 
 It may be a good idea to create multiple ercole reposervice for directory for stable/testing/unstable or PRD/COL/TST.
-### (main) ercole usage
-Ercole is a command line tool so it can be used to perform some.
 
-* `ercole version` print the version of ecole.
+### `ercole` CLI usage
+Ercole is thought as a CLI program, you can run commands and get help about them with the `--help` flag.
+
+Relevant commands are:
+* `ercole version` print the version of ercole.
 * `ercole show-config` show the ercole's actual configuration.
 * `ercole fire-hostdata` send a hostdata stored in a json file or from a stdin to ercole-dataservice.
 * `ercole migrate` migrate the structure of the mongodb database from a previous one to the latest.
-* `ercole serve` start the services. Every microservices can be turned on/off esplicitily using the various --enable options like --enable-dataservice.
-* `ercole api` is a group of subcommands used to perform request data from ercole-apiservice.
-* `ercole chart` is a group of subcommands used to perform request data from ercole-chartservice.
-* `ercole repo` is a group of subcommands used to manage the repository. Can accept the command --rebuild-cache to force the rebuild of the cache stored in `/var/lib/ercole/distributed_directory/index.json`.
-    * `... list` lists the artifacts detected in the upstream repositories.
-    * `... info` get the informations about the specified artifacts.
-    * `... install` download and install the specified artifacts.
-    * `... remove` uninstall the specified artifacts.
-    * `... update` try to find newer version of all installed artifacts and install them.
+* `ercole serve` start all the services. You can select explicity which services starts using `--enable` options like `--enable-dataservice`.
+* `ercole repo` is a group of subcommands used to manage the repository:
+    * `list` lists the artifacts detected in the upstream repositories.
+    * `info` get the informations about the specified artifacts.
+    * `install` download and install the specified artifacts.
+    * `remove` uninstall the specified artifacts.
+    * `update` try to find newer version of all installed artifacts and install them.
+    
+#### Enable `ercole` autocompletion
+To load autocompletion for each session, execute once:
+```
+$ ercole completion bash > /etc/bash_completion.d/ercole
+```
 
 ### Various HOWTO/examples
 
-#### How to install a artifact
+#### How to install an artifact
 *   The first thing to do is to find the available artifacts by running the command: ```ercole repo list```
 *   Choose the artifact you want.
 *   Install it with for example with the command: ```ercole repo install ercole-agent/ercole-agent-rhel7@1.5.0```
