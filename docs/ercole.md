@@ -163,18 +163,18 @@ Ercole repository is tought to be public and visibile to everyone so it shouldn'
 Some repository files/directory are managed using the `ercole repo` subcommands. Others files/directories can be safely modified.
 
 Managed files:
-    * `ping.txt` is a file used to check the liveness of the microservices. It's really managed but it's recommended to not modify it.
-    * `index.json` contains the cached list of available artifacts. Can be safely removed for forcing the rebuild of the cache when the next `repo` subcommands is run.
-    * `all/` contains the symlinks to all installed (and managed) artifacts.
-    * `rhel/*` contains the RPM repositories of the packages for every RHEL versions.
-    * `win/*` contains various ercole-agent setup files for windows.
-    * `aix/` contains the RPM repositories of the packages for every AIX versions.
-    * `aix-tar-gz/` alternative artifacts of agents for AIX.
-    * `hpux/` contains the agents for HPUX.
+* `ping.txt` is a file used to check the liveness of the microservices. It's really managed but it's recommended to not modify it.
+* `index.json` contains the cached list of available artifacts. Can be safely removed for forcing the rebuild of the cache when the next `repo` subcommands is run.
+* `all/` contains the symlinks to all installed (and managed) artifacts.
+* `rhel/*` contains the RPM repositories of the packages for every RHEL versions.
+* `win/*` contains various ercole-agent setup files for windows.
+* `aix/` contains the RPM repositories of the packages for every AIX versions.
+* `aix-tar-gz/` alternative artifacts of agents for AIX.
+* `hpux/` contains the agents for HPUX.
     
 Unmanaged known files:
-    * `shared/` contains various files like some .repo files.
-    * `snapshots/` is a directory present in [https://repository.ercole.io](https://repository.ercole.io) that is used to store snapshots of all projects. The snapshots aren't tought to be used outside the development.
+* `shared/` contains various files like some .repo files.
+* `snapshots/` is a directory present in [https://repository.ercole.io](https://repository.ercole.io) that is used to store snapshots of all projects. The snapshots aren't tought to be used outside the development.
 
 It may be a good idea to create multiple ercole reposervice for directory for stable/testing/unstable or PRD/COL/TST.
 
