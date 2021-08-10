@@ -191,7 +191,7 @@ Relevant commands are:
     * `list` lists the artifacts detected in the upstream repositories.
     * `info` get the informations about the specified artifacts.
     * `install` download and install the specified artifacts.
-    * `remove` uninstall the specified artifacts.
+    * `remove` remove the specified artifacts.
     * `update` try to find newer version of all installed artifacts and install them.
     
 ### Enable `ercole` autocompletion
