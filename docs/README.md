@@ -20,4 +20,4 @@ features:
 
 
 
-footer: GNU GPL v3 License | Copyright © 2019-present Sorint Lab SpA
+footer: GNU GPL v3 License | Copyright © 2021 Sorint Lab SpA
