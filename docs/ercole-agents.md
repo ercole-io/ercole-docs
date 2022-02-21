@@ -53,7 +53,14 @@ On windows it's required to have powershell >= 2.
 [1] Except when Virtualization feature is enabled
 
 ### Configuration
-Ercole-agent can be configured modifying the content of the `config.json` stored in `/opt/ercole-agent/config.json` on Linux or `C:\ErcoleAgent\config.json` on Windows.
+Ercole-agent can be configured modifying the content of the `config.json` stored in one of these directories on Linux:
+  * /opt/ercole-agent/config.json
+  * /usr/share/ercole-agent/config.json
+  * /etc/ercole-agent/ercole-agent.json
+  * /etc/ercole-agent/conf.d/*.json
+  * ./config.json
+  
+  or `C:\ErcoleAgent\config.json` on Windows.
 
 The configuration properties are:
 * `Hostname`: If the value is `default`, the hostname is detected from the host, otherwise it's the value of the `Hostname` property. The default value is `default`.
