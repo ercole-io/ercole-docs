@@ -53,7 +53,7 @@ On windows it's required to have powershell >= 2.
 [1] Except when Virtualization feature is enabled
 
 ### Configuration
-Ercole-agent can be configured modifying the content of the `config.json` stored in one of these directories on Linux:
+Ercole-agent can be configured modifying the content of the `config.json` stored in these files/directory in ascending order of priority. The properties specified in low priority configuration files are overriden by the values in high priority configuration files on Linux:
   * /opt/ercole-agent/config.json
   * /usr/share/ercole-agent/config.json
   * /etc/ercole-agent/ercole-agent.json
