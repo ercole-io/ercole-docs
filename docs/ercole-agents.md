@@ -92,11 +92,20 @@ The configuration properties are:
 * `sshpass` is installed
 * `ovmcli` installed on ovmmanager (From version 3.2.1)
 * Access ovmmanager via 10000 port
+##### Oracle/LVM
+* Obtain the CA certificate from the oVirt Engine: `openssl s_client -connect olvmmgr:443 -showcerts < /dev/null`
+* Import the CA certificate to the client machine where is installed ercole-agent  
+ To import the certificate in Linux:   
+    `scp root@<OLVM-FQDN>:/etc/pki/ovirt-engine/ca.pem /etc/pki/ca-trust/source/anchors/`  
+    `update-ca-trust`  
+ To import the certificate in Windows:  
+   `Install the certificate in Trusted Root Certification Authorities` 
+* The user used to authenticate the agent must have `ReadOnlyAdmin` role
 #### Configuration
 * `Features.Virtualization.Enabled`: true if Virtualization support should be enabled.
 * `Features.Virtualization.FetcherUser`: name of the user that should be used for fetching the informations. If the value is empty, it's the user that is running the agent.
 * `Features.Virtualization.Hypervisors`: list of the hypervisors from which the clusters/vms list is fetched.
-* `Features.Virtualization.Hypervisors[].Type`: contains the type of the hypervisors. Valid values are `vmware`, `ovm`.
+* `Features.Virtualization.Hypervisors[].Type`: contains the type of the hypervisors. Valid values are `vmware`, `ovm`, `olvm`.
 * `Features.Virtualization.Hypervisors[].Endpoint`: contains the endpoint of the hypervisor, e.g vSphere or ovmmanager ip address.
 * `Features.Virtualization.Hypervisors[].Username`: contains the username used to authenticate the agent.
 * `Features.Virtualization.Hypervisors[].OvmUserKey`: only for `ovm` type: it's the user ID of the user on ovmmanger that have exchanged keys with the components. 
