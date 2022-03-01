@@ -92,8 +92,8 @@ The configuration properties are:
 * `sshpass` is installed
 * `ovmcli` installed on ovmmanager (From version 3.2.1)
 * Access ovmmanager via 10000 port
-##### Oracle/LVM
-* Obtain the CA certificate from the oVirt Engine: `openssl s_client -connect olvmmgr:443 -showcerts < /dev/null`
+##### Oracle/OLVM
+* Obtain the CA certificate from the oVirt Engine: `openssl s_client -connect <OLVM-FQDN>:443 -showcerts < /dev/null`
 * Import the CA certificate to the client machine where is installed ercole-agent  
  To import the certificate in Linux:   
     `scp root@<OLVM-FQDN>:/etc/pki/ovirt-engine/ca.pem /etc/pki/ca-trust/source/anchors/`  
