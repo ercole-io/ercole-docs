@@ -5,8 +5,8 @@
   },
   "devDependencies": {
     "@vuepress/plugin-google-analytics": "^1.9.7",
-    "@vuepress/theme-blog": "^1.6.0",
-    "vuepress": "^0.14.11"
+    "@vuepress/theme-blog": "^2.3.3",
+    "vuepress": "^1.9.7"
   },
   "dependencies": {
     "@markspec/vuepress-plugin-footnote": "^1.1.3",
