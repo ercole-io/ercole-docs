@@ -77,7 +77,7 @@ It's highly recommended to configure it by creating files in `/etc/ercole/conf.d
 * `DataService.ArchivedHostCleaningJob.HourThreshold` contains the maximium number of hours in which a archived hostdata is retained. After this threshold the archived host will be deleted by the ArchivedHostCleaningJob.
 * `DataService.ArchivedHostCleaningJob.RunAtStartup` enable the running of the archived host cleaning job at startup. 
 * `DataService.FreshnessCheckJob.Crontab` contains the [cron](https://en.wikipedia.org/wiki/Cron) schedule expression for automatic throws of NO_DATA alerts when a current host is not up to date. 
-* `DataService.FreshnessCheckJob.HourThreshold` contains the maximium number of hours in which a hostdata is considered up to date. After this threshold a NO_DATA alert is thrown by the FreshnessCheckJob.
+* `DataService.FreshnessCheckJob.DaysThreshold` contains the maximium number of days in which a hostdata is considered up to date. After this threshold a NO_DATA alert is thrown by the FreshnessCheckJob.
 * `DataService.FreshnessCheckJob.RunAtStartup` enable the running of the freshness check job at startup. 
 #### AlertService.*
 * `AlertService.RemoteEndpoint` contains the URI used by the microservices to connect to the alertservice.
