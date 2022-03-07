@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Installation</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/assets/css/0.styles.9b4fe48d.css" as="style"><link rel="preload" href="/assets/js/app.8744f8ae.js" as="script"><link rel="preload" href="/assets/js/2.d6a35cdf.js" as="script"><link rel="preload" href="/assets/js/12.3415ef36.js" as="script"><link rel="prefetch" href="/assets/js/10.065dff82.js"><link rel="prefetch" href="/assets/js/11.0bf84335.js"><link rel="prefetch" href="/assets/js/3.0a5f355b.js"><link rel="prefetch" href="/assets/js/4.39a65fa7.js"><link rel="prefetch" href="/assets/js/5.188a4bcf.js"><link rel="prefetch" href="/assets/js/6.8758224c.js"><link rel="prefetch" href="/assets/js/7.c23ce467.js"><link rel="prefetch" href="/assets/js/8.711e37da.js"><link rel="prefetch" href="/assets/js/9.7cbecf40.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.9b4fe48d.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="installation"><a href="#installation" class="header-anchor">#</a> Installation</h1> <h2 id="requirements"><a href="#requirements" class="header-anchor">#</a> Requirements</h2> <table><thead><tr><th style="text-align:center;">Component</th> <th>Prerequisite</th></tr></thead> <tbody><tr><td style="text-align:center;">Operating system</td> <td>CentOS, RedHat, OracleLinux 7/8</td></tr> <tr><td style="text-align:center;">RAM</td> <td>4GB</td></tr> <tr><td style="text-align:center;">Filesystem</td> <td>50GB (minimum)</td></tr> <tr><td style="text-align:center;">CPU</td> <td>2 VirtualCPU</td></tr> <tr><td style="text-align:center;">Database</td> <td><a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/" target="_blank" rel="noopener noreferrer">MongoDB<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> &gt;= 4.2.0</td></tr></tbody></table> <h2 id="minimal-default-required-network-firewall-rules"><a href="#minimal-default-required-network-firewall-rules" class="header-anchor">#</a> Minimal default required network/firewall rules</h2> <table><thead><tr><th style="text-align:center;">From</th> <th>To</th> <th>Port</th> <th>Proto</th></tr></thead> <tbody><tr><td style="text-align:center;">users</td> <td>nginx</td> <td>80</td> <td>HTTPS</td></tr> <tr><td style="text-align:center;">agents</td> <td>nginx</td> <td>80</td> <td>HTTPS</td></tr> <tr><td style="text-align:center;">users</td> <td>nginx</td> <td>443</td> <td>HTTPS</td></tr> <tr><td style="text-align:center;">agents</td> <td>nginx</td> <td>443</td> <td>HTTPS</td></tr></tbody></table> <p>It's highly recommended to also add <a href="#suggested-network-firewall-rules">network/firewall rules for downloading artifacts from github.com</a>.</p> <h2 id="instructions"><a href="#instructions" class="header-anchor">#</a> Instructions</h2> <p>This installation guide is for RHEL8, but the steps can be easily adapted for RHEL7 .</p> <p>Add yum repositories with ercole RPMs</p> <ul><li><p><code>curl https://repository.ercole.io/shared/ercole-rhel8-x86_64.repo | tee /etc/yum.repos.d/ercole-x86_64.repo</code></p></li> <li><p><code>curl https://repository.ercole.io/shared/ercole-rhel8-noarch.repo | tee /etc/yum.repos.d/ercole-noarch.repo</code>
+Install the required packages</p></li> <li><p><code>yum install ercole ercole-web nginx</code></p></li> <li><p>Configure nginx by overwriting the file <code>/etc/nginx/nginx.conf</code> to something like:</p> <div class="language- extra-class"><pre class="language-text"><code># For more information on configuration, see:
+#   * Official English Documentation: http://nginx.org/en/docs/
+#   * Official Russian Documentation: http://nginx.org/ru/docs/
+
+user nginx;
+worker_processes auto;
+error_log /var/log/nginx/error.log;
+pid /run/nginx.pid;
+
+# Load dynamic modules. See /usr/share/doc/nginx/README.dynamic.
+include /usr/share/nginx/modules/*.conf;
+
+events {
+    worker_connections 1024;
+}
+
+http {
+    log_format  main  '$remote_addr - $remote_user [$time_local] &quot;$request&quot; '
+                      '$status $body_bytes_sent &quot;$http_referer&quot; '
+                      '&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;';
+
+    access_log  /var/log/nginx/access.log  main;
+
+    sendfile            on;
+    tcp_nopush          on;
+    tcp_nodelay         on;
+    keepalive_timeout   65;
+    types_hash_max_size 2048;
+    client_max_body_size 5M; 
+
+    include             /etc/nginx/mime.types;
+    default_type        application/octet-stream;
+
+    # Load modular configuration files from the /etc/nginx/conf.d directory.
+    # See http://nginx.org/en/docs/ngx_core_module.html#include
+    # for more information.
+    include /etc/nginx/conf.d/*.conf;
+
+    # Redirect http to https
+    server {
+        listen 80 default_server;
+    
+        server_name _;
+    
+        return 301 https://$host$request_uri;
+    }
+
+    # If you don't want to redirect http to https, delete the above server section and uncomment this:
+    # server {
+    #     listen       80 default_server;
+    #     listen       [::]:80 default_server;
+    #     server_name  _;
+    #     root         /usr/share/ercole/web;
+
+    #     # Load configuration files for the default server block.
+    #     include /etc/nginx/default.d/*.conf;
+
+    #     location / {
+    #             try_files $uri $uri/ /index.html =404;
+    #     }
+
+    #     location /data/ {
+    #         proxy_pass http://127.0.0.1:11111/;
+    #     }
+
+    #     location /api/ {
+    #         proxy_pass http://127.0.0.1:11113/;
+    #     }
+
+    #     location /repo/ {
+    #         proxy_pass http://127.0.0.1:11114/;
+    #     }
+
+    #     location /chart/ {
+    #         proxy_pass http://127.0.0.1:11116/;
+    #     }
+    # }
+
+    # Settings for a TLS enabled server.
+    #
+    server {
+        listen       443 ssl http2 default_server;
+        listen       [::]:443 ssl http2 default_server;
+        server_name  _;
+
+        ssl_certificate &quot;/etc/pki/nginx/server.crt&quot;;
+        ssl_certificate_key &quot;/etc/pki/nginx/private/server.key&quot;;
+        ssl_session_cache shared:SSL:1m;
+        ssl_session_timeout  10m;
+        ssl_prefer_server_ciphers on;
+
+        root         /usr/share/ercole/web;
+
+        # Load configuration files for the default server block.
+        include /etc/nginx/default.d/*.conf;
+
+        location / {
+	        try_files $uri $uri/ /index.html =404;
+        }
+
+        location /data/ {
+            proxy_pass http://127.0.0.1:11111/;
+        }
+
+        location /api/ {
+            proxy_pass http://127.0.0.1:11113/;
+        }
+
+        location /repo/ {
+            proxy_pass http://127.0.0.1:11114/;
+        }
+
+        location /chart/ {
+            proxy_pass http://127.0.0.1:11116/;
+        }
+    }
+}
+</code></pre></div><ul><li>As default, we have set the redirect of <code>http</code> requests to <code>https</code>. Uncomment the appropriate section if needed.</li> <li>Increase <code>client_max_body_size</code> if agents receive 413 &quot;Payload Too Large&quot; responses from the server</li></ul></li> <li><p><code>mkdir -p /etc/pki/nginx/private</code></p></li> <li><p><code>openssl req -nodes -x509 -newkey rsa:4096 -keyout /etc/pki/nginx/private/server.key -out /etc/pki/nginx/server.crt</code>.</p></li> <li><p>Add the following lines to /etc/ercole/conf.d/20-ercolesetup.toml:</p></li></ul> <div class="language- extra-class"><pre class="language-text"><code># FE.APIService.RemoteEndpoint = &quot;https://&lt;myip&gt;/api&quot;
+# FE.ChartService.RemoteEndpoint = &quot;https://&lt;myip&gt;/chart&quot;
+</code></pre></div><ul><li>If your machine has multiple IP addresses, check and fix endpoints in <code>/etc/ercole/conf.d/20-ercolesetup.toml</code>.</li> <li>If you want change the URI used to connect to mongodb, run the command <code>echo 'Mongodb.URI = &quot;mongodb://user:pass@ip:port/ercole&quot;' &gt; /etc/ercole/conf.d/40-mongoconf.toml</code> with the right <a href="https://docs.mongodb.com/manual/reference/connection-string/" target="_blank" rel="noopener noreferrer">Mongo URI<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>.</li> <li>Review ercole configuration with <code>ercole show-config</code></li> <li>If you have changed ercole configuration, run the command <code>ercole-setup</code></li> <li><code>systemctl start ercole</code></li> <li><code>systemctl start enable nginx</code></li> <li><code>systemctl start nginx</code></li></ul> <h3 id="troubleshooting"><a href="#troubleshooting" class="header-anchor">#</a> Troubleshooting</h3> <h4 id="failed-13-permission-denied-while-connecting-to-upstream-in-var-log-nginx-error-log"><a href="#failed-13-permission-denied-while-connecting-to-upstream-in-var-log-nginx-error-log" class="header-anchor">#</a> Failed (13: Permission denied) while connecting to upstream in /var/log/nginx/error.log</h4> <p>If curl https://127.0.0.1/repo/ping.txt doesn't return PONG! but returns nginx's 404 page and <code>/var/log/nginx/error.log</code> contains lines like</p> <div class="language- extra-class"><pre class="language-text"><code>2020/08/03 09:25:01 [crit] 77642#0: *16 connect() to 127.0.0.1:11111 failed (13: Permission denied) while connecting to upstream, client: 127.0.0.1, server: _, request: &quot;GET /data/ping HTTP/1.1&quot;, upstream: &quot;http://127.0.0.1:11111/ping&quot;, host: &quot;127.0.0.1&quot;
+</code></pre></div><p>Execute the command <code>setsebool -P httpd_can_network_connect 1</code>.
+<a href="https://stackoverflow.com/questions/23948527/13-permission-denied-while-connecting-to-upstreamnginx" target="_blank" rel="noopener noreferrer">https://stackoverflow.com/questions/23948527/13-permission-denied-while-connecting-to-upstreamnginx<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.8744f8ae.js" defer></script><script src="/assets/js/2.d6a35cdf.js" defer></script><script src="/assets/js/12.3415ef36.js" defer></script>
+  </body>
+</html>
