@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /ercole.svg
+heroImage: /ercole-large.svg
 actionText: Get Started →
 actionLink: /introduction/
 
