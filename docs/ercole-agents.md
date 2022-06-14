@@ -6,7 +6,7 @@ There are two different variant of ercole-agent: ercole-agent (go) and ercole-ag
 
 | Feature                               | Ercole-agent (go) | Ercole-agent-perl |
 |:--------------------------------------|:------------------|:------------------|
-| Programming Language                  | Go 1.14           | Perl 5.8.8        |
+| Programming Language                  | Go 1.18           | Perl 5.8.8        |
 | Linux (generic) support               | yes[1]            | no                |
 | Windows Server >= 2008R2 support      | yes               | no                |
 | Solaris operating system support      | no                | yes[2]            |
@@ -134,10 +134,11 @@ The exadata component should not be virtualized.
 * The service user need administration permissions to access to the instances (Trusted connection)
 * TCP/IP protocol connections is enabled on the instances
 * ercole-agent service need to have a setted user
+* SQLServer version = 2019
 
 #### Configuration
 * `Features.MicrosoftSQLServer.Enabled`: true if Microsoft/SQLServer support should be enabled.
-* `Features.MicrosoftSQLServer.FetcherUser`: name of the user that should be used for fetching the informations. If the value is empty, it's the user that is running the agent. It's useless...
+* `Features.MicrosoftSQLServer.FetcherUser`: name of the user that should be used for fetching the informations. If the value is empty, it's the user that is running the agent.
 
 ## Ercole-agent-perl
 #### Requirements
