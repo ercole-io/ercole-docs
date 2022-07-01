@@ -20,11 +20,13 @@ There are two different variant of ercole-agent: ercole-agent (go) and ercole-ag
 | Microsoft/SQLServer target            | yes               | no                |
 | MariaDBFoundation/MariaDB target      | no                | no                |
 | PostgreSQL/PostgreSQL target          | no                | no                |
-| Oracle/MySQL target                   | no                | no                |
+| Oracle/MySQL target                   | yes[3]            | no                |
 
 [1] It's packaged only for RHEL5, RHEL6, RHEL7, RHEL8.
 
 [2] It isn't already properly packaged.
+
+[3] It's packaged only for RHEL6, RHEL7, RHEL8.
 
 ## Ercole-agent (go)
 ### RHELx installation
@@ -49,6 +51,7 @@ On windows it's required to have powershell >= 2.
 | Oracle/Database support               | Yes     | Yes       | Yes       | Yes       | Yes          |
 | Oracle/Exadata support                | Yes     | Yes       | Yes       | Yes       | No           |
 | Microsoft/SQLServer support           | No      | No        | No        | No        | Yes          |
+| Oracle/MySQL support                  | No      | Yes       | Yes       | Yes       | No           |
 
 [1] Except when Virtualization feature is enabled
 
@@ -129,9 +132,23 @@ The exadata component should not be virtualized.
 * `Features.OracleExadata.Enabled`: true if Oracle/Exadata support should be enabled.
 * `Features.OracleExadata.FetcherUser`: name of the user that should be used for fetching the informations. If the value is empty, it's the user that is running the agent. Root permissions are usually required.
 
+### Oracle/MySQL target
+#### Requirements
+* The service user to access to the instance needs these grants:   
+    `GRANT PROCESS ON *.* TO 'user'@'%';`  
+    `GRANT SHOW DATABASES ON *.* TO 'user'@'%';`  
+    `GRANT SELECT ON *.* TO 'user'@'%';`
+
+#### Configuration
+* `Features.MySQL.Enabled`: true if Oracle/MySQL support should be enabled.
+* `Features.MySQL.Instances[].Host`: name of the host where the server is running.
+* `Features.MySQL.Instances[].Port`: port number where the server is running. If it is omitted, the used default port number is 3306.
+* `Features.MySQL.Instances[].User`: username used by agent to be authenticated by MySQL.
+* `Features.MySQL.Instances[].Password`: password used by agent to be authenticated by MySQL.
+
 ### Microsoft/SQLServer target
 #### Requirements
-* The service user need administration permissions to access to the instances (Trusted connection)
+* The service user needs administration permissions to access to the instances (Trusted connection)
 * TCP/IP protocol connections is enabled on the instances
 * ercole-agent service need to have a setted user
 * SQLServer version = 2019
