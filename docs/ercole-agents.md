@@ -19,7 +19,7 @@ There are two different variant of ercole-agent: ercole-agent (go) and ercole-ag
 | Oracle/Exadata target                 | yes               | no                |
 | Microsoft/SQLServer target            | yes               | no                |
 | MariaDBFoundation/MariaDB target      | no                | no                |
-| PostgreSQL/PostgreSQL target          | no                | no                |
+| PostgreSQL/PostgreSQL target          | yes[3]            | no                |
 | Oracle/MySQL target                   | yes[3]            | no                |
 
 [1] It's packaged only for RHEL5, RHEL6, RHEL7, RHEL8.
@@ -51,6 +51,7 @@ On windows it's required to have powershell >= 2.
 | Oracle/Database support               | Yes     | Yes       | Yes       | Yes       | Yes          |
 | Oracle/Exadata support                | Yes     | Yes       | Yes       | Yes       | No           |
 | Microsoft/SQLServer support           | No      | No        | No        | No        | Yes          |
+| PostgreSQL/PostgreSQL support         | No      | Yes       | Yes       | Yes       | No           |   
 | Oracle/MySQL support                  | No      | Yes       | Yes       | Yes       | No           |
 
 [1] Except when Virtualization feature is enabled
@@ -145,6 +146,31 @@ The exadata component should not be virtualized.
 * `Features.MySQL.Instances[].Port`: port number where the server is running. If it is omitted, the used default port number is 3306.
 * `Features.MySQL.Instances[].User`: username used by agent to be authenticated by MySQL.
 * `Features.MySQL.Instances[].Password`: password used by agent to be authenticated by MySQL.
+
+### PostgreSQL/PostgreSQL target
+#### Requirements
+* PostgreSQL version >= 9  
+* The service user to access to the instance needs these grants:   
+ Version 9.*  
+    `CREATE USER 'user' WITH LOGIN ENCRYPTED PASSWORD 'insert_pw_here';`  
+    `GRANT SELECT ON pg_catalog.pg_largeobject TO 'user';`  
+    `GRANT SELECT ON pg_catalog.pg_authid TO 'user';`  
+ Version >= 10  
+    `CREATE USER 'user' WITH LOGIN PASSWORD 'insert_pwd_here';`  
+    `SELECT format('GRANT CONNECT ON DATABASE %I TO 'user';', datname) FROM pg_database \gexec;`  
+    `--the following line must be run while connected to each database`  
+    `ALTER DEFAULT PRIVILEGES FOR ROLE 'user' IN SCHEMA pg_catalog, information_schema GRANT SELECT ON TABLES TO 'user';`  
+    `GRANT pg_read_all_settings TO 'user';`  
+    `GRANT pg_read_all_stats TO 'user';`  
+    `GRANT SELECT ON ALL TABLES IN SCHEMA pg_catalog TO 'user';`  
+    `GRANT SELECT ON ALL TABLES IN SCHEMA information_schema TO 'user';`  
+    
+#### Configuration
+* `Features.PostgreSQL.Enabled`: true if PostgreSQL/PostgreSQL support should be enabled.
+* `Features.PostgreSQL.FetcherUser`: name of the user that should be used for fetching the informations. If the value is empty, it's the user that is running the agent.
+* `Features.PostgreSQL.Instances[].Port`: port number where the server is running.
+* `Features.PostgreSQL.Instances[].User`: username used by agent to be authenticated by PostgreSQL.
+* `Features.PostgreSQL.Instances[].Password`: password used by agent to be authenticated by PostgreSQL.
 
 ### Microsoft/SQLServer target
 #### Requirements
