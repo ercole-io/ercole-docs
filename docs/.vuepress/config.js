@@ -24,6 +24,7 @@ module.exports = {
                     ['/ercole', 'Ercole'],
                     ['/ercole-web', 'Ercole Web'],
                     ['/ercole-agents', 'Ercole Agents'],
+                    ['/ercole-cloud', 'Ercole Cloud'],
                 ]
             },
         },
