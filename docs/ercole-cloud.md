@@ -25,4 +25,4 @@ Data required to enable an Oracle profile:
 Data required to enable an AWS profile:
 * `Access Key ID`
 * `Region`
-* `Access Key ID`
+* `Secret Key ID`
