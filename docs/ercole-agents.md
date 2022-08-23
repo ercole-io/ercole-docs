@@ -74,7 +74,7 @@ The configuration properties are:
 * `AgentUser`: It's the username used by agent to be authenticated by ercole-dataservice.
 * `AgentPassword`: It's the password used by agent to be authenticated by ercole-dataservice.
 * `Period`: It's the number of hour between different runs.   
-            This value is also used in Ercole back-end. After this threshold a NO_DATA alert is thrown by the FreshnessCheckJob.
+            This value is also used in Ercole back-end: after this threshold a NO_DATA alert is thrown by the FreshnessCheckJob.
 * `EnableServerValidation`: True if ercole-agent must validate ercole-dataservice https certificate.
 * `ForcePwshVersion`: Use a specific version of powershell. Used only on windows.
 * `ParallelizeRequests`: True if ercole-agent must run the fetchers in parallel. Otherwise false.
@@ -237,7 +237,8 @@ The configuration properties are:
 * `serverurl`: It's the base URL of ercole-dataservice to which are sent the hostdatas.
 * `serverusr`: It's the username used by agent to be authenticated by ercole-dataservice.
 * `serverpsw`: It's the password used by agent to be authenticated by ercole-dataservice.
-* `frequency`: Is the number of hour between different runs.
+* `frequency`: It's the number of hour between different runs.  
+               This value is also used in Ercole back-end: after this threshold a NO_DATA alert is thrown by the FreshnessCheckJob.
 * `forcestats`: True if the fetcher fetch/*/stats should be run
 * `EnableServerValidation`: True if ercole-agent should validate ercole-dataservice https certificate.
 * `oratab`: it's the /path/to/the/oratab, the file that contains the list of DBs
