@@ -114,7 +114,6 @@ It's highly recommended to configure it by creating files in `/etc/ercole/conf.d
     * `APIService.AuthenticationProvider.Host`, contains the server used to authenticate the users.
     * `APIService.AuthenticationProvider.Port`, contains the port used to connect to the LDAP server. e.g. 389.
     * `APIService.AuthenticationProvider.LDAPBase`, contains the LDAP base of the realm. e.g. `dc=planetexpress,dc=com`.
-    * `APIService.AuthenticationProvider.LDAPUseSSL`, enable/disable SSL for connecting to the server.
     * `APIService.AuthenticationProvider.LDAPBindDN`, contains the account used to authenticate to the LDAP server.
     * `APIService.AuthenticationProvider.LDAPBindPassword`, contains the password account used to authenticate to the LDAP server.
     * `APIService.AuthenticationProvider.LDAPUserFilter`, filter to search username matches, must contain `%s` that will be replaced with the username.
@@ -128,7 +127,6 @@ It's highly recommended to configure it by creating files in `/etc/ercole/conf.d
     Host = "127.0.0.1"
     Port = 10389
     LDAPBase = "dc=planetexpress,dc=com"
-    LDAPUseSSL = false
     LDAPBindDN = "cn=admin,dc=planetexpress,dc=com"
     LDAPBindPassword = "GoodNewsEveryone"
     LDAPUserFilter = "(uid=%s)"
