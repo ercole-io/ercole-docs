@@ -184,6 +184,12 @@ The exadata component should not be virtualized.
 * `Features.MicrosoftSQLServer.Enabled`: true if Microsoft/SQLServer support should be enabled.
 * `Features.MicrosoftSQLServer.FetcherUser`: name of the user that should be used for fetching the informations. If the value is empty, it's the user that is running the agent.
 
+## `ercole agent` CLI usage
+Ercole agent is thought as a CLI program, you can run commands and get help about them with the `--help` flag.
+
+Relevant command is:
+* `ercole-agent check-oratab` manage oratab file: set oratab file with expected values.
+
 ## Ercole-agent-perl
 #### Requirements
 * perl >= 5.8.8
