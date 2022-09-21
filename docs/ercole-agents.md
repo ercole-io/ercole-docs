@@ -22,11 +22,11 @@ There are two different variant of ercole-agent: ercole-agent (go) and ercole-ag
 | PostgreSQL/PostgreSQL target          | yes[3]            | no                |
 | Oracle/MySQL target                   | yes[3]            | no                |
 
-[1] It's packaged only for RHEL5, RHEL6, RHEL7, RHEL8.
+[1] It's packaged only for RHEL5, RHEL6, RHEL7, RHEL8, DEB.
 
 [2] It isn't already properly packaged.
 
-[3] It's packaged only for RHEL6, RHEL7, RHEL8.
+[3] It's packaged only for RHEL6, RHEL7, RHEL8, DEB.
 
 ## Ercole-agent (go)
 ### RHELx installation
@@ -34,25 +34,29 @@ The installations instructions are written for RHEL8, but they are also applicab
 1. `curl https://repository.ercole.io/shared/ercole-rhel8-x86_64.repo | tee /etc/yum.repos.d/ercole-x86_64.repo`
 2. `yum install ercole-agent`
 
+### DEB installation
+1. Download the correct file from [https://repository.ercole.io/api/deb/deb/x86_64/](https://repository.ercole.io/api/deb/deb/x86_64/).
+2. Install the DEB file downloaded.
+
 ### Windows installation
 On windows it's required to have powershell >= 2.
 1. Download the correct file from [https://repository.ercole.io/win/win/x86_64/](https://repository.ercole.io/win/win/x86_64/).
 2. Click to the setup and follow the installation wizard. 
 
 ### Operating system level differences
-|                                       | RHEL5   | RHEL6     | RHEL7     | RHEL8     | Windows      |
-|:--------------------------------------|:--------|:----------|:----------|:----------|:-------------|
-| Service handling program              | service | systemctl | systemctl | systemctl | services.msc |
-| Fetcher alternative user support      | Yes     | Yes       | Yes       | Yes       | No           |
-| Powershell required                   | No[1]   | No[1]     | No[1]     | No[1]     | Yes          |
-| `Features.OracleDatabase.Oratab` used | Yes     | Yes       | Yes       | Yes       | No           |
-| `ForcePwshVersion` property used      | No      | No        | No        | No        | Yes          |
-| Virtualization support                | Yes     | Yes       | Yes       | Yes       | No           |
-| Oracle/Database support               | Yes     | Yes       | Yes       | Yes       | Yes          |
-| Oracle/Exadata support                | Yes     | Yes       | Yes       | Yes       | No           |
-| Microsoft/SQLServer support           | No      | No        | No        | No        | Yes          |
-| PostgreSQL/PostgreSQL support         | No      | Yes       | Yes       | Yes       | No           |   
-| Oracle/MySQL support                  | No      | Yes       | Yes       | Yes       | No           |
+|                                       | RHEL5   | RHEL6     | RHEL7     | RHEL8     | DEB       | Windows      |
+|:--------------------------------------|:--------|:----------|:----------|:----------|:----------|:-------------|
+| Service handling program              | service | systemctl | systemctl | systemctl | systemctl | services.msc |
+| Fetcher alternative user support      | Yes     | Yes       | Yes       | Yes       | Yes       | No           |
+| Powershell required                   | No[1]   | No[1]     | No[1]     | No[1]     | No[1]     | Yes          |
+| `Features.OracleDatabase.Oratab` used | Yes     | Yes       | Yes       | Yes       | Yes       | No           |
+| `ForcePwshVersion` property used      | No      | No        | No        | No        | No        | Yes          |
+| Virtualization support                | Yes     | Yes       | Yes       | Yes       | Yes       | No           |
+| Oracle/Database support               | Yes     | Yes       | Yes       | Yes       | Yes       | Yes          |
+| Oracle/Exadata support                | Yes     | Yes       | Yes       | Yes       | Yes       | No           |
+| Microsoft/SQLServer support           | No      | No        | No        | No        | No        | Yes          |
+| PostgreSQL/PostgreSQL support         | No      | Yes       | Yes       | Yes       | Yes       | No           |  
+| Oracle/MySQL support                  | No      | Yes       | Yes       | Yes       | Yes       | No           |
 
 [1] Except when Virtualization feature is enabled
 
