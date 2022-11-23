@@ -37,6 +37,7 @@ This installation guide is for RHEL8, but the steps can be easily adapted for RH
 * If your machine has multiple IP addresses, check and fix endpoints in `/etc/ercole/conf.d/20-ercolesetup.toml`
 * Review ercole configuration with `ercole show-config`
 * `systemctl start ercole`
+* To create *ercole* super user `ercole insert-su`
 
 Ercole is configured automatically during the installation but you can edit the configuration by creating/files in `/etc/ercole/conf.d`. Its logs can be read with the command `journalctl -u ercole-dataservice -u ercole-alertservice -u ercole-apiservice -u ercole-reposervice -u ercole-chartservice` and can be updated as usually with a simple `yum update` unless in the new versions were introduced breaking changes.
 It is also recommeded to also install [jq](https://stedolan.github.io/jq/download/).
@@ -102,15 +103,9 @@ It's highly recommended to configure it by creating files in `/etc/ercole/conf.d
 * `APIService.ReadOnly` disable the APIs that modify the data
 * `APIService.EnableInsertingCustomPatchingFunction` enable the possibility to add/set a custom patching function.
 * `APIService.DebugOracleDatabaseAgreementsAssignmentAlgorithm` enable the verbosity of the assignment algorithm used to distribuite oracle database agreement licenses.
-* `APIService.AuthenticationProvider.Type` contains the authentication type: the allowed values are `basic` or `ldap`.
-  * `basic` authentication provider type needs:
-    * `APIService.AuthenticationProvider.Username` contains the username used to authenticate.
-    It's also used as username by `ercole` to perform requests to APIService.
-    * `APIService.AuthenticationProvider.Password` contains the password used to authenticate password when `Type` is `basic`.
-    It's also used as password by `ercole` to perform requests to APIService.
-  * `ldap` authentication provider type needs:
-    * `APIService.AuthenticationProvider.Username` contains the username used by `ercole` to perform requests to APIService.
-    * `APIService.AuthenticationProvider.Password` contains the password used by `ercole` to perform requests to APIService.
+* `APIService.AuthenticationProvider.Types` contains the authentication type: the allowed values are `basic` and/or `ldap`. It can contain both values.
+  * `basic` authentication provider uses MongoDB to store data needed for authentication and authorization.
+  * `ldap` authentication provider uses MongoDB to store data needed for authorization and needs:
     * `APIService.AuthenticationProvider.Host`, contains the server used to authenticate the users.
     * `APIService.AuthenticationProvider.Port`, contains the port used to connect to the LDAP server. e.g. 389.
     * `APIService.AuthenticationProvider.LDAPBase`, contains the LDAP base of the realm. e.g. `dc=planetexpress,dc=com`.
@@ -118,12 +113,16 @@ It's highly recommended to configure it by creating files in `/etc/ercole/conf.d
     * `APIService.AuthenticationProvider.LDAPBindPassword`, contains the password account used to authenticate to the LDAP server.
     * `APIService.AuthenticationProvider.LDAPUserFilter`, filter to search username matches, must contain `%s` that will be replaced with the username.
     * Here it is a complete example working with a [docker OpenLDAP example](https://github.com/rroemhild/docker-test-openldap):
+  * `APIService.AuthenticationProvider.Username` contains the username used by other services to authenticate to APIService. This username is created automatically during Ercole first start, but it can be changed later.
+  * `APIService.AuthenticationProvider.Password` ontains the password used by other services to authenticate to APIService. This password is created automatically during Ercole first start, but it can be changed later.
     ```
     [APIService.AuthenticationProvider]
-    Type = "ldap"
-    # User and Password used by other services to login to APIService
-    Username = "hermes" 
-    Password = "hermes"
+    Types = [
+      "basic",
+      "ldap",
+    ]
+    Username = "AjfYSzGJkjmxuhdi" 
+    Password = "%9O9P@4Yh8$Wh5Ng"
     Host = "127.0.0.1"
     Port = 10389
     LDAPBase = "dc=planetexpress,dc=com"
@@ -181,6 +180,7 @@ Relevant commands are:
 * `ercole version` print the version of ercole.
 * `ercole show-config` show the ercole's actual configuration.
 * `ercole fire-hostdata` send a hostdata stored in a json file or from a stdin to ercole-dataservice.
+* `ercole insert-su` insert *ercole* super user.
 * `ercole migrate` migrate the structure of the mongodb database from a previous one to the latest.
 * `ercole serve` start all the services. You can select explicity which services starts using `--enable` options like `--enable-dataservice`.
 * `ercole repo` is a group of subcommands used to manage the repository:
