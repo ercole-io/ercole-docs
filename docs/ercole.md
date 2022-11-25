@@ -114,7 +114,7 @@ It's highly recommended to configure it by creating files in `/etc/ercole/conf.d
     * `APIService.AuthenticationProvider.LDAPUserFilter`, filter to search username matches, must contain `%s` that will be replaced with the username.
     * Here it is a complete example working with a [docker OpenLDAP example](https://github.com/rroemhild/docker-test-openldap):
   * `APIService.AuthenticationProvider.Username` contains the username used by other services to authenticate to APIService. This username is created automatically during Ercole first start, but it can be changed later.
-  * `APIService.AuthenticationProvider.Password` ontains the password used by other services to authenticate to APIService. This password is created automatically during Ercole first start, but it can be changed later.
+  * `APIService.AuthenticationProvider.Password` contains the password used by other services to authenticate to APIService. This password is created automatically during Ercole first start, but it can be changed later.
     ```
     [APIService.AuthenticationProvider]
     Types = [
