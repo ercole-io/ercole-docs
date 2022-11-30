@@ -32,7 +32,7 @@ Ercole is the backend component of ercole.io project.
 ## Installation guide
 This installation guide is for RHEL8, but the steps can be easily adapted for RHEL7 .
 
-* `curl https://repository.ercole.io/shared/ercole-rhel8-x86_64.repo | tee /etc/yum.repos.d/ercole-x86_64.repo`
+* `curl https://repository.ercole.io/api/shared/ercole-rhel8-x86_64.repo | tee /etc/yum.repos.d/ercole-x86_64.repo`
 * `yum install ercole`
 * If your machine has multiple IP addresses, check and fix endpoints in `/etc/ercole/conf.d/20-ercolesetup.toml`
 * Review ercole configuration with `ercole show-config`
@@ -152,7 +152,7 @@ It's highly recommended to configure it by creating files in `/etc/ercole/conf.d
 * `ChartService.LogHTTPRequest` enable the logging of the http request.
 
 ## Notes about the internal repository
-Ercole repository is tought to be public and visibile to everyone so it shouldn't contains private informations like the password or private keys. The main ercole repository is [https://repository.ercole.io](https://repository.ercole.io). It is served via HTTP so you can download files in various mode like:
+Ercole repository is tought to be public and visibile to everyone so it shouldn't contains private informations like the password or private keys. The main ercole repository is [https://repository.ercole.io/api](https://repository.ercole.io/api). It is served via HTTP so you can download files in various mode like:
 *   `wget http://myawesomeercole2.local:11114/ping.txt`
 *   `curl http://myawesomeercole2.local:11114/ping.txt > /tmp/ping.txt`
 Some repository files/directory are managed using the `ercole repo` subcommands. Others files/directories can be safely modified.
@@ -169,9 +169,11 @@ Managed files:
     
 Unmanaged known files:
 * `shared/` contains various files like some .repo files.
-* `snapshots/` is a directory present in [https://repository.ercole.io](https://repository.ercole.io) that is used to store snapshots of all projects. The snapshots aren't tought to be used outside the development.
+* `snapshots/` is a directory present in [https://repository.ercole.io/api](https://repository.ercole.io/api) that is used to store snapshots of all projects. The snapshots aren't tought to be used outside the development.
 
 It may be a good idea to create multiple ercole reposervice for directory for stable/testing/unstable or PRD/COL/TST.
+
+There is also a web-based version of the repository for human, non-automated, use to download the necessary packages: [https://repository.ercole.io](https://repository.ercole.io).
 
 ## `ercole` CLI usage
 Ercole is thought as a CLI program, you can run commands and get help about them with the `--help` flag.
@@ -205,7 +207,7 @@ $ ercole completion bash > /etc/bash_completion.d/ercole
 
 ### Install a package to rhelX from the ercole-reposervice
 The first thing to do is to create a repository file .
-* `curl https://repository.ercole.io/shared/ercole-rhel7-x86_64.repo | tee /etc/yum.repos.d/ercole.repo`
+* `curl https://repository.ercole.io/api/shared/ercole-rhel7-x86_64.repo | tee /etc/yum.repos.d/ercole.repo`
 
 The next thing is to install the package with yum or dnf.
 * `yum install ercole-agent` 
