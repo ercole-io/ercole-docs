@@ -39,7 +39,7 @@ The installations instructions are written for RHEL8, but they are also applicab
 2. Install the DEB file downloaded.
 
 ### Windows installation
-On windows it's required to have powershell >= 2.
+On windows it's required to have powershell >= 3.
 1. Download the correct file from [https://repository.ercole.io/api/win/win/x86_64/](https://repository.ercole.io/api/win/win/x86_64/).
 2. Click to the setup and follow the installation wizard. 
 
