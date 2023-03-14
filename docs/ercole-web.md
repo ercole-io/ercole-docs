@@ -32,7 +32,17 @@ Ercole-web has the possibility to config a Single Sign On login feature, followi
 - Copy and paste the below content inside the `config_sso.json` file:
 
 ```
-{ "auth_url": "", "token_url": "", "client_id": "", "client_id_secret": "", "redirect_uri": "", "grant_type": "", "response_type": "", "scope": "", "sso_visible": false }
+{
+  "auth_url": "",
+  "token_url": "",
+  "client_id": "",
+  "client_id_secret": "",
+  "redirect_uri": "",
+  "grant_type": "",
+  "response_type": "",
+  "scope": "",
+  "sso_visible": false
+}
 ```
 
 - Fill the `config_sso.json` with the needed information
