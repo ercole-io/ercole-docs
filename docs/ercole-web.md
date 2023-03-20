@@ -35,6 +35,7 @@ Ercole-web has the possibility to config a Single Sign On login feature, followi
 {
   "auth_url": "",
   "token_url": "",
+  "signoff_url": "",
   "client_id": "",
   "client_id_secret": "",
   "redirect_uri": "",
