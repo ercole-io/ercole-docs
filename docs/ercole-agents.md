@@ -188,6 +188,19 @@ The exadata component should not be virtualized.
 * `Features.MicrosoftSQLServer.Enabled`: true if Microsoft/SQLServer support should be enabled.
 * `Features.MicrosoftSQLServer.FetcherUser`: name of the user that should be used for fetching the informations. If the value is empty, it's the user that is running the agent.
 
+### MongoDB/MongoDB target
+#### Requirements
+* MongoDB version >= 4.2.0
+  
+#### Configuration
+* `Features.MongoDB.Enabled`: true if MongoDB/MongoDB support should be enabled.
+* `Features.MongoDB.FetcherUser`: name of the user that should be used for fetching the informations. If the value is empty, it's the user that is running the agent.
+* `Features.MongoDB.Instances[].Host`: name of the host where the server is running.
+* `Features.MongoDB.Instances[].Port`: port number where the server is running.
+* `Features.MongoDB.Instances[].User`: username used by agent to be authenticated by MongoDB.
+* `Features.MongoDB.Instances[].Password`: password used by agent to be authenticated by MongoDB.
+* `Features.MongoDB.Instances[].DirectConnection`: true to force operations to run on the host specified in connection URI.
+
 ## `ercole agent` CLI usage
 Ercole agent is thought as a CLI program, you can run commands and get help about them with the `--help` flag.
 
