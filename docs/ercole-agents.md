@@ -74,12 +74,16 @@ The configuration properties are:
 * `Hostname`: If the value is `default`, the hostname is detected from the host, otherwise it's the value of the `Hostname` property. The default value is `default`.
 * `Environment`: It's the environment of the machine. e.g TST, PRD, DEV, COLL, ...
 * `Location`: It's the physical location of the host. e.g Italy, Germany, France, ...
-* `DataserviceURL`: It's the base URL of ercole-dataservice to which are sent the hostdatas.
-* `AgentUser`: It's the username used by agent to be authenticated by ercole-dataservice.
-* `AgentPassword`: It's the password used by agent to be authenticated by ercole-dataservice.
+* `Queue`: Contains specific dataservice configurations.
+* `Queue.Dataservices`: It's an array that contains all the dataservices you want to send data.
+* `Queue.WaitingTime`: It's the time (minute) to wait before retry to send data.
+* `Queue.RetryLimit`: It's the maximum number of attempts.
+* `Queue.Dataservices[].url`: It's the base URL of ercole-dataservice to which are sent the hostdatas.
+* `Queue.Dataservices[].AgentUser`: It's the username used by agent to be authenticated by ercole-dataservice.
+* `Queue.Dataservices[].AgentPassword`: It's the password used by agent to be authenticated by ercole-dataservice.
+* `Queue.Dataservices[].EnableServerValidation`: True if ercole-agent must validate ercole-dataservice https certificate.
 * `Period`: It's the number of hour between different runs.   
             This value is also used in Ercole back-end: after this threshold a NO_DATA alert is thrown by the FreshnessCheckJob.
-* `EnableServerValidation`: True if ercole-agent must validate ercole-dataservice https certificate.
 * `ForcePwshVersion`: Use a specific version of powershell. Used only on windows.
 * `ParallelizeRequests`: True if ercole-agent must run the fetchers in parallel. Otherwise false.
 * `Verbose`: Add verbosity to agent logging even the debug level logs.
