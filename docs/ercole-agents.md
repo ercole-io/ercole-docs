@@ -137,10 +137,29 @@ The configuration properties are:
 
 ### Oracle/Exadata target
 #### Requirements
-The exadata component should not be virtualized.
+All Exadata configurations are currently supported (Bare Metal - RoCE/InfiniBand -, KVM and Xen)
+To work, the user will need to configure the component list files at setup time. This files will reside in the installation directory (usually /opt/ercole-agent) and are named as follows:
+* .dbs_group: MANDATORY, contains a list of the physical compute nodes
+* .cell_group: MANDATORY, contains a list of the cell servers
+* .ibs_group: NON-MANDATORY, contains a list of the InfiniBand switches installed. If such configuration file is not found, the agent will assume Exadata is setup with RoCE interconnect
+
 #### Configuration
-* `Features.OracleExadata.Enabled`: true if Oracle/Exadata support should be enabled.
-* `Features.OracleExadata.FetcherUser`: name of the user that should be used for fetching the informations. If the value is empty, it's the user that is running the agent. Root permissions are usually required.
+The agent can run either with root or non-root users, this is configured using parameter 'Features.OracleExadata.FetherUser' (mentioned below). In both setup, the user chosen must have passwordless access to all the components listed in the above configuration files (user-to-user for compute nodes, user-to-root for the others. If the chosen running user is root, it will always be root-to-root)
+Such user (if non-root), must also be given the permissions to run the following MINIMUM REQUIREMENTS commands with sudo (NOPASS option must be used):
+* ipmitool sunoem cli *
+* dmidecode *
+* dbmcli -e list *
+* xm info
+* xm list
+* vm_maker --list *
+* vm_maker --list-domains
+* grep * /tmp/.ErcoleAgent_Exa*.lst
+* rm -f /tmp/.ErcoleAgent_Exa*.lst
+
+##### N.B.:
+* only on agent for each DB machine is required to be installed for this feature to work. If your setup requires the agent to be installed on all compute nodes, the Exadata feature MUST be enabled only on a single host
+* the DB machine name must be declared manually in the following configuration file: /opt/ercole-agent/config.json
+* in either configuration available for the Exadata feature to run (root or non-root user), the ercole-agent service MUST be configured to run as the root user
 
 ### Oracle/MySQL target
 #### Requirements
